@@ -3,5 +3,6 @@
 ################################################################################
 
 .vs
-ExcelDNAVSExtension/bin
-ExcelDNAVSExtension/obj
+[Bb]in/
+[Oo]bj/
+*.user
