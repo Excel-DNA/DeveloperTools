@@ -12,7 +12,15 @@ namespace ExcelDNAVSExtension
 
         public void ProjectFinishedGenerating(Project project)
         {
-            XmlSchemas.AddSchemasToProject(project);
+            try
+            {
+                XmlSchemas.AddSchemasToProject(project);
+                VSExceptionSettings.DisableLoaderLock();
+            }
+            catch (System.Exception e)
+            {
+                ExceptionHandler.ShowException(e);
+            }
         }
 
         public void ProjectItemFinishedGenerating(ProjectItem projectItem)
