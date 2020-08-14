@@ -17,6 +17,8 @@
     <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">MyFunctions.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true">MyRibbon.cs</ProjectItem>
+      <ProjectItem>MyRibbon.xml</ProjectItem>
     </Project>
   </TemplateContent>
   <WizardExtension>
