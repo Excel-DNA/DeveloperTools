@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="My Project\AssemblyInfo.vb" />
+    <None Include="MyRibbon.vb" />
     <Compile Include="Settings1.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -89,6 +90,9 @@
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="VBProjectTemplate.vstemplate" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MyRibbon.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
