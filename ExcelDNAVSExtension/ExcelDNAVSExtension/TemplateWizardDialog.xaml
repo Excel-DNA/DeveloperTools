@@ -1,0 +1,11 @@
+﻿<Window x:Class="ExcelDNAVSExtension.TemplateWizardDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Excel-DNA Add-in Options" Height="190" Width="370" ShowInTaskbar="False"
+        ResizeMode="NoResize">
+    <Grid Margin="11">
+        <CheckBox Content="Include a ribbon" Height="16" HorizontalAlignment="Left" Name="includeRibbonCheckBox" VerticalAlignment="Top" />
+        <CheckBox Content="Include XML schemas" Height="16" HorizontalAlignment="Left" Margin="0,21,0,0" Name="includeXMLSchemasCheckBox" VerticalAlignment="Top" />
+        <Button Content="Create" Height="23" HorizontalAlignment="Right" Name="createButton" VerticalAlignment="Bottom" Width="75" IsDefault="True" Click="OnCreate" />
+    </Grid>
+</Window>

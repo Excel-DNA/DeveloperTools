@@ -6,6 +6,13 @@ namespace ExcelDNAVSExtension
 {
     public class TemplateWizard : IWizard
     {
+        public TemplateWizard()
+        {
+            options = new ProjectCreationOptions();
+            options.includeRibbon = true;
+            options.includeXMLSchemas = true;
+        }
+
         public void BeforeOpeningFile(ProjectItem projectItem)
         {
         }
@@ -14,7 +21,9 @@ namespace ExcelDNAVSExtension
         {
             try
             {
-                XmlSchemas.AddSchemasToProject(project);
+                if (options.includeXMLSchemas)
+                    XmlSchemas.AddSchemasToProject(project);
+
                 VSExceptionSettings.DisableLoaderLock();
             }
             catch (System.Exception e)
@@ -33,12 +42,24 @@ namespace ExcelDNAVSExtension
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            replacementsDictionary.Add("$exceldnaincluderibbon$", "true");
+            TemplateWizardDialog dialog = new TemplateWizardDialog(options);
+            dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            if (dialog.ShowDialog().GetValueOrDefault())
+            {
+                options = dialog.GetOptions();
+                replacementsDictionary.Add("$exceldnaincluderibbon$", options.includeRibbon ? "true" : "false");
+            }
+            else
+            {
+                throw new WizardBackoutException();
+            }
         }
 
         public bool ShouldAddProjectItem(string filePath)
         {
             return true;
         }
+
+        private ProjectCreationOptions options;
     }
 }
