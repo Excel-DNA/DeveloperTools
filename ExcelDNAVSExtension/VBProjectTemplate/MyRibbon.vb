@@ -7,11 +7,12 @@ Public Class MyRibbon
     Inherits ExcelRibbon
 
     Public Overrides Function GetCustomUI(RibbonID As String) As String
-        Using stream As Stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("$safeprojectname$.MyRibbon.xml")
-            Using reader As New StreamReader(stream)
-                Return reader.ReadToEnd()
-            End Using
-        End Using
+        Return RibbonResources.Ribbon
+    End Function
+
+    Public Overrides Function LoadImage(imageId As String) As Object
+        ' This will return the image resource with the name specified in the image='xxxx' tag
+        Return RibbonResources.ResourceManager.GetObject(imageId)
     End Function
 
     Public Sub OnButtonPressed(control As IRibbonControl)

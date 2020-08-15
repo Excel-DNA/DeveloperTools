@@ -47,6 +47,7 @@ $if$ ($targetframeworkversion$ >= 3.5)
 $endif$
 $if$ ($exceldnaincluderibbon$ == true)
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
 $endif$
   </ItemGroup>
 
@@ -105,8 +106,13 @@ $endif$
 
   $if$ ($exceldnaincluderibbon$ == true)
   <ItemGroup>
-    <EmbeddedResource Include="MyRibbon.xml" />
+    <None Include="RibbonResources\Ribbon.xml" />
+    <None Include="RibbonResources\Image1.png" />
     <Compile Include="MyRibbon.vb" />
+    <EmbeddedResource Include="RibbonResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RibbonResources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   $endif$
 

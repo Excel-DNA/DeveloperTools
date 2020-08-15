@@ -92,7 +92,11 @@
     <VSTemplate Include="VBProjectTemplate.vstemplate" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MyRibbon.xml" />
+    <None Include="Image1.png" />
+    <None Include="Ribbon.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RibbonResources.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
