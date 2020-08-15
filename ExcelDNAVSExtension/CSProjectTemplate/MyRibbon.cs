@@ -8,13 +8,13 @@ public class MyRibbon : ExcelRibbon
 {
     public override string GetCustomUI(string RibbonID)
     {
-        using (System.IO.Stream stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("$safeprojectname$.MyRibbon.xml"))
-        {
-            using (System.IO.StreamReader reader = new System.IO.StreamReader(stream))
-            {
-                return reader.ReadToEnd();
-            }
-        }
+        return RibbonResources.Ribbon;
+    }
+
+    public override object LoadImage(string imageId)
+    {
+        // This will return the image resource with the name specified in the image='xxxx' tag
+        return RibbonResources.ResourceManager.GetObject(imageId);
     }
 
     public void OnButtonPressed(IRibbonControl control)

@@ -44,6 +44,7 @@
 		<Reference Include="System.Xml"/>
     $if$ ($exceldnaincluderibbon$ == true)
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
     $endif$
   </ItemGroup>
 	<ItemGroup>
@@ -52,8 +53,13 @@
 	</ItemGroup>
   $if$ ($exceldnaincluderibbon$ == true)
   <ItemGroup>
-    <EmbeddedResource Include="MyRibbon.xml" />
+    <None Include="RibbonResources\Ribbon.xml" />
+    <None Include="RibbonResources\Image1.png" />
     <Compile Include="MyRibbon.cs" />
+    <EmbeddedResource Include="RibbonResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RibbonResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   $endif$
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

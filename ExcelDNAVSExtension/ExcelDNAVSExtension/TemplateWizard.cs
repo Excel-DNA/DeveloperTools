@@ -24,6 +24,9 @@ namespace ExcelDNAVSExtension
                 if (options.includeXMLSchemas)
                     XmlSchemas.AddSchemasToProject(project);
 
+                if (options.includeRibbon)
+                    RunResxCustomTool(project);
+
                 VSExceptionSettings.DisableLoaderLock();
             }
             catch (System.Exception e)
@@ -58,6 +61,18 @@ namespace ExcelDNAVSExtension
         public bool ShouldAddProjectItem(string filePath)
         {
             return true;
+        }
+
+        private void RunResxCustomTool(Project project)
+        {
+            foreach (ProjectItem projectItem in project.ProjectItems)
+            {
+                if (projectItem.Name.EndsWith(".resx"))
+                {
+                    VSLangProj.VSProjectItem vsProjectItem = projectItem.Object as VSLangProj.VSProjectItem;
+                    vsProjectItem?.RunCustomTool();
+                }
+            }
         }
 
         private ProjectCreationOptions options;
