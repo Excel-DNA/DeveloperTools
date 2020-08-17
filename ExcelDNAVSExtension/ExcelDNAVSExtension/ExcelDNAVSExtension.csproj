@@ -65,6 +65,10 @@
     <Compile Include="XmlSchemas.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="logo128.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Packages\exceldna.addin.1.1.1.nupkg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>

@@ -4,6 +4,8 @@
         <Identity Id="f1b3b55f-9bdc-4e9a-802c-84b329e36587" Version="1.0.1" Language="en-US" Publisher="Govert van Drimmelen" />
         <DisplayName>Excel-DNA Developer Tools</DisplayName>
         <Description xml:space="preserve">The Visual Studio extension for Excel-DNA.</Description>
+        <MoreInfo>https://excel-dna.net/</MoreInfo>
+        <Icon>logo128.png</Icon>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />
