@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>Excel-DNA add-in</Name>
-    <Description>Excel-DNA add-in</Description>
+    <Name>Excel-DNA Add-in</Name>
+    <Description>A project for creating an Excel add-in using Excel-DNA.</Description>
     <Icon>CSProjectTemplate.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <LanguageTag>csharp</LanguageTag>
