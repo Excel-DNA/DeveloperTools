@@ -11,7 +11,7 @@
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>ExcelAddin</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
-    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
   </TemplateData>
   <TemplateContent>
     <Project File="ProjectTemplate.vbproj" ReplaceParameters="true">
