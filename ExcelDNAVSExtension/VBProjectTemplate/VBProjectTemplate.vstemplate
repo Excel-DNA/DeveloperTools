@@ -5,6 +5,9 @@
     <Icon>VBProjectTemplate.ico</Icon>
     <ProjectType>VisualBasic</ProjectType>
     <LanguageTag>visualbasic</LanguageTag>
+    <PlatformTag>windows</PlatformTag>
+    <ProjectTypeTag>desktop</ProjectTypeTag>
+    <ProjectTypeTag>Add-in</ProjectTypeTag>
     <TemplateID>814150cd-ebd5-4556-b5c9-1521b60cddc6</TemplateID>
     <SortOrder>1000</SortOrder>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>

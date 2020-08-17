@@ -6,6 +6,9 @@
     <Icon>CSProjectTemplate.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <LanguageTag>csharp</LanguageTag>
+    <PlatformTag>windows</PlatformTag>
+    <ProjectTypeTag>desktop</ProjectTypeTag>
+    <ProjectTypeTag>Add-in</ProjectTypeTag>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <SortOrder>1000</SortOrder>
     <TemplateID>13af5aa3-8a0f-4fe4-bfaf-4779e77e85b0</TemplateID>
