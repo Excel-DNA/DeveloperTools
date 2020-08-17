@@ -17,7 +17,7 @@
     <Project File="ProjectTemplate.vbproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" OpenInEditor="true" OpenOrder="10">MyFunctions.vb</ProjectItem>
       <ProjectItem ReplaceParameters="true">MyRibbon.vb</ProjectItem>
-      <ProjectItem TargetFileName="RibbonResources\Ribbon.xml">Ribbon.xml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="RibbonResources\Ribbon.xml">Ribbon.xml</ProjectItem>
       <ProjectItem TargetFileName="RibbonResources\Image1.png">Image1.png</ProjectItem>
       <ProjectItem>RibbonResources.resx</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="My Project\AssemblyInfo.vb">AssemblyInfo.vb</ProjectItem>
