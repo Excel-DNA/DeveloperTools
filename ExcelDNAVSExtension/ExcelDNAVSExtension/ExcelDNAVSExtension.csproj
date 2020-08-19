@@ -98,6 +98,13 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
+    <ProjectReference Include="..\CSRibbonTemplate\CSRibbonTemplate.csproj">
+      <Project>{92B351DB-A183-4FD7-A8C7-0F3E5694266F}</Project>
+      <Name>CSRibbonTemplate</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
     <ProjectReference Include="..\VBProjectTemplate\VBProjectTemplate.vbproj">
       <Project>{ED4B53F2-48F6-4B3D-A5E5-226D5B3C2E7D}</Project>
       <Name>VBProjectTemplate</Name>
