@@ -1,6 +1,6 @@
 ﻿<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>Excel-DNA Add-in</Name>
+    <Name>Excel-DNA Add-in (.NET Framework)</Name>
     <Description>A project for creating an Excel add-in using Excel-DNA.</Description>
     <Icon>VBProjectTemplate.ico</Icon>
     <ProjectType>VisualBasic</ProjectType>
