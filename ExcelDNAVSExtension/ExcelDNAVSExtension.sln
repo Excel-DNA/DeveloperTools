@@ -11,6 +11,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VBProjectTemplate", "VBProj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSRibbonTemplate", "CSRibbonTemplate\CSRibbonTemplate.csproj", "{92B351DB-A183-4FD7-A8C7-0F3E5694266F}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VBRibbonTemplate", "VBRibbonTemplate\VBRibbonTemplate.vbproj", "{7CA1DFAA-149C-4F24-A89A-29FF0A6C2188}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{92B351DB-A183-4FD7-A8C7-0F3E5694266F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92B351DB-A183-4FD7-A8C7-0F3E5694266F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92B351DB-A183-4FD7-A8C7-0F3E5694266F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CA1DFAA-149C-4F24-A89A-29FF0A6C2188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CA1DFAA-149C-4F24-A89A-29FF0A6C2188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CA1DFAA-149C-4F24-A89A-29FF0A6C2188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CA1DFAA-149C-4F24-A89A-29FF0A6C2188}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

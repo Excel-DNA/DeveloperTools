@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Excel-DNA Ribbon</Name>
+    <Description>An Excel ribbon extension.</Description>
+    <Icon>Logo.ico</Icon>
+    <TemplateID>ca2af732-23b7-4bfe-8ec5-80a74fadbdf4</TemplateID>
+    <SortOrder>1000</SortOrder>
+    <DefaultName>Ribbon.vb</DefaultName>
+    <ProjectType>VisualBasic</ProjectType>
+    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+  </TemplateData>
+  <TemplateContent>
+    <References>
+      <Reference>
+        <Assembly>System.Windows.Forms</Assembly>
+        <Assembly>System.Drawing</Assembly>
+      </Reference>
+    </References>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$fileinputname$.vb">Ribbon.vb</ProjectItem>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$fileinputname$Resources.resx" CustomTool="ResXFileCodeGenerator">RibbonResources.resx</ProjectItem>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$fileinputname$Resources\Ribbon.xml">Ribbon.xml</ProjectItem>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$fileinputname$Resources\Image1.png">Image1.png</ProjectItem>
+  </TemplateContent>
+</VSTemplate>

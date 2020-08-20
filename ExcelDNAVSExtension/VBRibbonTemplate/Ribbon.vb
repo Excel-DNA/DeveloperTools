@@ -2,16 +2,16 @@
 Imports ExcelDna.Integration.CustomUI
 
 <ComVisible(True)>
-Public Class MyRibbon
+Public Class $safeitemname$
     Inherits ExcelRibbon
 
     Public Overrides Function GetCustomUI(RibbonID As String) As String
-        Return RibbonResources.Ribbon
+        Return $fileinputname$Resources.Ribbon
     End Function
 
     Public Overrides Function LoadImage(imageId As String) As Object
         ' This will return the image resource with the name specified in the image='xxxx' tag
-        Return RibbonResources.ResourceManager.GetObject(imageId)
+        Return $fileinputname$Resources.ResourceManager.GetObject(imageId)
     End Function
 
     Public Sub OnButtonPressed(control As IRibbonControl)
