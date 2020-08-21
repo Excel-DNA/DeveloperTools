@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MyRibbon.cs" />
+    <None Include="MyCommands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,7 @@
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSProjectTemplate" d:TargetPath="|CSProjectTemplate;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
         <Asset Type="nupkg" d:Source="File" Path="Packages\exceldna.addin.1.1.1.nupkg" d:VsixSubPath="Packages" />
         <Asset Type="nupkg" d:Source="File" Path="Packages\exceldna.integration.1.1.0.nupkg" d:VsixSubPath="Packages" />
+        <Asset Type="nupkg" d:Source="File" Path="Packages\exceldna.interop.14.0.1.nupkg" d:VsixSubPath="Packages" />
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="VBProjectTemplate" d:TargetPath="|VBProjectTemplate;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" AssemblyName="|%CurrentProject%;AssemblyName|" />
