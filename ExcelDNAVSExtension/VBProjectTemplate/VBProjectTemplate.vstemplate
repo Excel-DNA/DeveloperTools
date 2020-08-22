@@ -19,6 +19,7 @@
   <TemplateContent>
     <Project File="ProjectTemplate.vbproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" OpenInEditor="true" OpenOrder="10">MyFunctions.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true">MyCommands.vb</ProjectItem>
       <ProjectItem ReplaceParameters="true">MyRibbon.vb</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="RibbonResources\Ribbon.xml">Ribbon.xml</ProjectItem>
       <ProjectItem TargetFileName="RibbonResources\Image1.png">Image1.png</ProjectItem>
@@ -44,6 +45,7 @@
     <packages repository="extension" repositoryId="f1b3b55f-9bdc-4e9a-802c-84b329e36587">
       <package id="ExcelDna.Integration" version="1.1.0" />
       <package id="ExcelDna.AddIn" version="1.1.1" />
+      <package id="ExcelDna.Interop" version="14.0.1" />
     </packages>
   </WizardData>
 </VSTemplate>
