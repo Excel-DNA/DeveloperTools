@@ -17,7 +17,8 @@ namespace ExcelDNAVSExtension
 {
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(VSPackage.PackageGuidString)]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
+    [ProvideProjectFactory(typeof(CSAddinProjectFactory), "Excel-DNA Add-in CSharp", null, null, null, null, TemplateGroupIDsVsTemplate = "Excel-DNA Add-in", LanguageVsTemplate = "CSharp")]
+    [ProvideProjectFactory(typeof(VBAddinProjectFactory), "Excel-DNA Add-in VisualBasic", null, null, null, null, TemplateGroupIDsVsTemplate = "Excel-DNA Add-in", LanguageVsTemplate = "VisualBasic")]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class VSPackage : AsyncPackage
     {
@@ -34,6 +35,8 @@ namespace ExcelDNAVSExtension
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             try
             {
+                RegisterProjectFactory((IVsProjectFactory)new CSAddinProjectFactory(this));
+                RegisterProjectFactory((IVsProjectFactory)new VBAddinProjectFactory(this));
                 commands = new Commands(this);
             }
             catch (System.Exception e)

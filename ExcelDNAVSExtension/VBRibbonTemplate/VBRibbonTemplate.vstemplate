@@ -10,6 +10,8 @@
     <ProjectType>VisualBasic</ProjectType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <TemplateGroupID>Excel-DNA Add-in</TemplateGroupID>
+    <ShowByDefault>false</ShowByDefault>
   </TemplateData>
   <TemplateContent>
     <References>

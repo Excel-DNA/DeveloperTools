@@ -9,6 +9,8 @@
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
     <DefaultName>Ribbon.cs</DefaultName>
+    <TemplateGroupID>Excel-DNA Add-in</TemplateGroupID>
+    <ShowByDefault>false</ShowByDefault>
   </TemplateData>
   <TemplateContent>
     <References>
