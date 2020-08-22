@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+
+  <Commands package="guidVSPackage">
+    
+    <Menus>
+      <Menu guid="guidVSPackageCmdSet" id="TopMenu" priority="0x700" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
+        <Strings>
+          <CommandName>Excel-DNA</CommandName>
+          <ButtonText>Excel-DNA</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
+
+    <Groups>
+      <Group guid="guidVSPackageCmdSet" id="TopMenuGroup" priority="0x0000">
+        <Parent guid="guidVSPackageCmdSet" id="TopMenu"/>
+      </Group>
+    </Groups>
+
+    <Buttons>
+      
+      <Button guid="guidVSPackageCmdSet" id="cmdidDocs" priority="0x0100" type="Button">
+        <Parent guid="guidVSPackageCmdSet" id="TopMenuGroup" />
+        <Strings>
+          <ButtonText>Documentation</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="guidVSPackageCmdSet" id="cmdidAbout" priority="0x0110" type="Button">
+        <Parent guid="guidVSPackageCmdSet" id="TopMenuGroup" />
+        <Strings>
+          <ButtonText>About</ButtonText>
+        </Strings>
+      </Button>
+      
+    </Buttons>
+
+    <Bitmaps>
+      <Bitmap guid="guidImages" href="Resources\Images.png" usedList="bmpPic1"/>
+    </Bitmaps>
+    
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="guidVSPackage" value="{8123a50c-24f3-4eb6-8e12-6e852e023779}" />
+
+    <GuidSymbol name="guidVSPackageCmdSet" value="{a6a2b6bd-05ce-4df3-a1c2-a9fa1685c969}">
+      <IDSymbol name="TopMenu" value="0000" />
+      <IDSymbol name="TopMenuGroup" value="0010" />
+      <IDSymbol name="cmdidAbout" value="0x0100" />
+      <IDSymbol name="cmdidDocs" value="0x0101" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImages" value="{b1e53aad-6a3a-4c1e-9b1a-7949f516844d}" >
+      <IDSymbol name="bmpPic1" value="1" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
