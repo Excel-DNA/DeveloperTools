@@ -1,0 +1,51 @@
+﻿using ExcelDna.Integration;
+using Microsoft.Office.Interop.Excel;
+using System;
+using Xunit;
+
+[assembly: Xunit.TestFramework("Xunit.ExcelTestFramework", "ExcelDna.Testing")]
+
+namespace Examples
+{
+    public class UtilsTest
+    {
+        [Fact]
+        public void PassingTest()
+        {
+            Assert.Equal(4, Add(2, 2));
+        }
+
+        [Fact]
+        public void FailingTest()
+        {
+            Assert.Equal(5, Add(2, 2));
+        }
+
+        [ExcelFact]
+        public void GetExcelVersion()
+        {
+            Assert.Equal("16.0", Utils.GetVersion());
+        }
+
+        [ExcelFact]
+        public void SetCellValue()
+        {
+            Application app = (Application)ExcelDnaUtil.Application;
+            var newBook = app.Workbooks.Add();
+
+            Range targetRange = newBook.Sheets[1].Range["A1:C2"];
+
+            object[,] newValues = new object[,] { { "One", 2, "Three" }, { true, DateTime.Now, "" } };
+            targetRange.Value = newValues;
+
+            var cell = new ExcelReference(0, 0);
+            Assert.Equal("One", cell.GetValue().ToString());
+        }
+
+
+        int Add(int x, int y)
+        {
+            return x + y;
+        }
+    }
+}
