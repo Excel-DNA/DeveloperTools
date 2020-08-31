@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="f1b3b55f-9bdc-4e9a-802c-84b329e36587" Version="1.0.2" Language="en-US" Publisher="Govert van Drimmelen" />
+        <Identity Id="f1b3b55f-9bdc-4e9a-802c-84b329e36587" Version="1.0.3" Language="en-US" Publisher="Excel-DNA" />
         <DisplayName>Excel-DNA Developer Tools</DisplayName>
         <Description xml:space="preserve">The Visual Studio extension for Excel-DNA.</Description>
         <MoreInfo>https://excel-dna.net/</MoreInfo>
