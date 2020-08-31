@@ -59,8 +59,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bitness.cs" />
+    <Compile Include="ExcelDetector.cs" />
     <Compile Include="ExcelFactAttribute.cs" />
     <Compile Include="ExcelFactDiscoverer.cs" />
+    <Compile Include="ExcelRunner.cs" />
     <Compile Include="ExcelTestAssemblyRunner.cs" />
     <Compile Include="ExcelTestCase.cs" />
     <Compile Include="ExcelTestCaseRunner.cs" />

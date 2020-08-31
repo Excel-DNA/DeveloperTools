@@ -21,15 +21,16 @@ namespace ExcelDna.Testing
         private readonly IMessageSink diagnosticMessageSink;
         private readonly IMessageSink executionMessageSink;
         private readonly ITestFrameworkExecutionOptions executionOptions;
+        private readonly ExcelRunner excelRunner;
 
         public ExcelTestAssemblyRunner(ITestAssembly testAssembly, IEnumerable<IXunitTestCase> testCases, IMessageSink diagnosticMessageSink, IMessageSink executionMessageSink, ITestFrameworkExecutionOptions executionOptions)
             : base(testAssembly, testCases, diagnosticMessageSink, executionMessageSink, executionOptions)
         {
             this.testAssembly = testAssembly;
-
             this.diagnosticMessageSink = diagnosticMessageSink;
             this.executionMessageSink = executionMessageSink;
             this.executionOptions = executionOptions;
+            excelRunner = new ExcelRunner();
         }
 
         protected override async Task<RunSummary> RunTestCollectionsAsync(IMessageBus messageBus, CancellationTokenSource cancellationTokenSource)
@@ -57,7 +58,7 @@ namespace ExcelDna.Testing
             RunSummary result = new RunSummary();
             try
             {
-                Process.Start(@"C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE", "\"" + @"E:\programming\Govert\Excel-DNA Developer Tools\ExcelDna.Testing\Examples\bin\Debug\Examples-AddIn64.xll" + "\"");
+                excelRunner.Start(testAssembly.Assembly.AssemblyPath);
                 Thread.Sleep(6000);
 
                 channel = RegisterIpcChannel("ExcelDna.Testing.ClientChannel", Guid.NewGuid().ToString(), false);
