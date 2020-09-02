@@ -58,19 +58,16 @@ namespace ExcelDna.Testing
             RunSummary result = new RunSummary();
             try
             {
-                excelRunner.Start(testAssembly.Assembly.AssemblyPath);
+                Process excelProcess = excelRunner.Start(testAssembly.Assembly.AssemblyPath);
                 Thread.Sleep(6000);
 
                 channel = RegisterIpcChannel("ExcelDna.Testing.ClientChannel", Guid.NewGuid().ToString(), false);
-
-
                 RemoteObject remoteObject = (RemoteObject)RemotingServices.Connect(typeof(RemoteObject), "ipc://xxx1000/RemoteObject.rem");
-
-                //System.Windows.Forms.MessageBox.Show("remoteObject " + (remoteObject != null).ToString());
-
-
                 RemoteTestAssemblyRunner remoteTestAssemblyRunner = CreateRemoteTestAssemblyRunner(testCases, remoteObject, cancellationTokenSource, messageBus);
-                //System.Windows.Forms.MessageBox.Show("remoteTestAssemblyRunner " + (remoteTestAssemblyRunner != null).ToString());
+
+                if (Debugger.IsAttached)
+                    VS.VisualStudioInstance.AttachDebugger(excelProcess);
+
                 result = remoteTestAssemblyRunner.Run();
             }
             catch (System.Exception e)
