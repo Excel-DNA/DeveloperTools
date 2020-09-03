@@ -58,8 +58,10 @@ namespace ExcelDna.Testing
             RunSummary result = new RunSummary();
             try
             {
+                ExcelStartupEvent.Create();
                 Process excelProcess = excelRunner.Start(testAssembly.Assembly.AssemblyPath);
-                Thread.Sleep(6000);
+                if (!ExcelStartupEvent.Wait(30000))
+                    throw new System.ApplicationException("Excel startup failed.");
 
                 channel = RegisterIpcChannel("ExcelDna.Testing.ClientChannel", Guid.NewGuid().ToString(), false);
                 RemoteObject remoteObject = (RemoteObject)RemotingServices.Connect(typeof(RemoteObject), "ipc://xxx1000/RemoteObject.rem");

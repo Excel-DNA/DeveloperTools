@@ -15,7 +15,7 @@ namespace ExcelAgent
         {
             channel = RegisterIpcChannel("ExcelAgent", "xxx1000", false);
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(ExcelDna.Testing.RemoteObject), "RemoteObject.rem", WellKnownObjectMode.Singleton);
-            //System.Windows.Forms.MessageBox.Show("AutoOpen - Channel registered.");
+            ExcelDna.Testing.ExcelStartupEvent.Set();
         }
 
         public void AutoClose()
