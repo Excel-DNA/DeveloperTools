@@ -71,6 +71,7 @@ namespace ExcelDna.Testing
                     VS.VisualStudioInstance.AttachDebugger(excelProcess);
 
                 result = remoteTestAssemblyRunner.Run();
+                remoteObject.CloseHost();
             }
             catch (System.Exception e)
             {

@@ -10,15 +10,9 @@ namespace Examples
     public class UtilsTest
     {
         [Fact]
-        public void PassingTest()
+        public void RegularTest()
         {
-            Assert.Equal(4, Add(2, 2));
-        }
-
-        [Fact]
-        public void FailingTest()
-        {
-            Assert.Equal(5, Add(2, 2));
+            Assert.Equal(4, 2 + 2);
         }
 
         [ExcelFact]
@@ -40,12 +34,8 @@ namespace Examples
 
             var cell = new ExcelReference(0, 0);
             Assert.Equal("One", cell.GetValue().ToString());
-        }
 
-
-        int Add(int x, int y)
-        {
-            return x + y;
+            newBook.Close(false);
         }
     }
 }
