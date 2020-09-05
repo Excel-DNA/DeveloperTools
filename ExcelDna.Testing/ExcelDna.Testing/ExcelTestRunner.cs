@@ -22,7 +22,7 @@ namespace ExcelDna.Testing
 
         protected override Task<decimal> InvokeTestMethodAsync(ExceptionAggregator aggregator)
         {
-            var result = true
+            var result = !TestCase.UseCOM
                ? InvokeOnUIThreadAsync(aggregator)
                : InvokeAsync(aggregator);
 
@@ -46,19 +46,6 @@ namespace ExcelDna.Testing
                 }
             };
             ExcelDna.Integration.ExcelAsyncUtil.QueueAsMacro(a);
-            //Application.Current.Dispatcher.BeginInvoke(
-            //   new Action(async () =>
-            //   {
-            //       try
-            //       {
-            //           var result = await InvokeAsync(aggregator);
-            //           tcs.SetResult(result);
-            //       }
-            //       catch (Exception e)
-            //       {
-            //           tcs.SetException(e);
-            //       }
-            //   }), DispatcherPriority.Background);
 
             return tcs.Task;
         }

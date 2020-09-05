@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bitness.cs" />
+    <Compile Include="COMUtil.cs" />
     <Compile Include="ExcelDetector.cs" />
     <Compile Include="ExcelFactAttribute.cs" />
     <Compile Include="ExcelFactDiscoverer.cs" />

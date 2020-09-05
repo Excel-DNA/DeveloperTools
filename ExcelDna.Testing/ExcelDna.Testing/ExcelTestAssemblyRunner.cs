@@ -36,15 +36,18 @@ namespace ExcelDna.Testing
         protected override async Task<RunSummary> RunTestCollectionsAsync(IMessageBus messageBus, CancellationTokenSource cancellationTokenSource)
         {
             IEnumerable<IXunitTestCase> localTestCases = TestCases.Except(TestCases.OfType<ExcelTestCase>());
-            IEnumerable<ExcelTestCase> excelTestCases = TestCases.OfType<ExcelTestCase>();
+            IEnumerable<ExcelTestCase> excelTestCases = TestCases.OfType<ExcelTestCase>().Where(i => !i.UseCOM);
+            IEnumerable<ExcelTestCase> excelCOMTestCases = TestCases.OfType<ExcelTestCase>().Where(i => i.UseCOM);
 
-            var result = await Local_RunTestCasesAsync(localTestCases, messageBus, cancellationTokenSource);
+            var result = await LocalRunTestCasesAsync(localTestCases, messageBus, cancellationTokenSource);
+            if (excelCOMTestCases.Count() > 0)
+                result.Aggregate(await COMRunTestCasesAsync(excelCOMTestCases, messageBus, cancellationTokenSource));
             if (excelTestCases.Count() > 0)
-                result.Aggregate(await Remote_RunTestCasesAsync(excelTestCases, messageBus, cancellationTokenSource));
+                result.Aggregate(await RemoteRunTestCasesAsync(excelTestCases, messageBus, cancellationTokenSource));
             return result;
         }
 
-        private async Task<RunSummary> Local_RunTestCasesAsync(IEnumerable<IXunitTestCase> testCases, IMessageBus messageBus, CancellationTokenSource cancellationTokenSource)
+        private async Task<RunSummary> LocalRunTestCasesAsync(IEnumerable<IXunitTestCase> testCases, IMessageBus messageBus, CancellationTokenSource cancellationTokenSource)
         {
             var allTestCases = TestCases;
             TestCases = testCases;
@@ -53,7 +56,7 @@ namespace ExcelDna.Testing
             return result;
         }
 
-        private async Task<RunSummary> Remote_RunTestCasesAsync(IEnumerable<ExcelTestCase> testCases, IMessageBus messageBus, CancellationTokenSource cancellationTokenSource)
+        private async Task<RunSummary> RemoteRunTestCasesAsync(IEnumerable<ExcelTestCase> testCases, IMessageBus messageBus, CancellationTokenSource cancellationTokenSource)
         {
             RunSummary result = new RunSummary();
             try
@@ -79,6 +82,22 @@ namespace ExcelDna.Testing
             }
 
             return result;
+        }
+
+        private async Task<RunSummary> COMRunTestCasesAsync(IEnumerable<ExcelTestCase> testCases, IMessageBus messageBus, CancellationTokenSource cancellationTokenSource)
+        {
+            try
+            {
+                COMUtil.SetApplication(new Microsoft.Office.Interop.Excel.Application());
+            }
+            catch (System.Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.ToString());
+                return new RunSummary();
+            }
+
+            TestCases = testCases;
+            return await base.RunTestCollectionsAsync(messageBus, cancellationTokenSource);
         }
 
         IpcChannel channel;
