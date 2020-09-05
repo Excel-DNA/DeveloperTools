@@ -17,12 +17,15 @@ namespace ExcelDna.Testing
             if (!excelDetected)
                 throw new ApplicationException("Can't find an installed version of Excel.");
 
-            string xllPath = Path.Combine(Path.GetDirectoryName(addinAssemblyPath), Path.GetFileNameWithoutExtension(addinAssemblyPath) + "-AddIn" + (bitness == Bitness.Bit64 ? "64" : "") + ".xll");
-
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = excelExePath;
-            info.Arguments = "\"" + xllPath + "\"";
+            info.Arguments = "\"" + GetXllPath(addinAssemblyPath, bitness) + "\"";
             return Process.Start(info);
+        }
+
+        public static string GetXllPath(string addinAssemblyPath, Bitness bitness)
+        {
+            return Path.Combine(Path.GetDirectoryName(addinAssemblyPath), Path.GetFileNameWithoutExtension(addinAssemblyPath) + "-AddIn" + (bitness == Bitness.Bit64 ? "64" : "") + ".xll");
         }
 
         private string excelExePath;

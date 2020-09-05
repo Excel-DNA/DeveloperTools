@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Ipc;
@@ -89,6 +90,7 @@ namespace ExcelDna.Testing
             try
             {
                 COMUtil.SetApplication(new Microsoft.Office.Interop.Excel.Application());
+                COMUtil.Application.RegisterXLL(ExcelRunner.GetXllPath(testAssembly.Assembly.AssemblyPath, Marshal.SizeOf(COMUtil.Application.HinstancePtr) == 8 ? Bitness.Bit64 : Bitness.Bit32));
             }
             catch (System.Exception e)
             {

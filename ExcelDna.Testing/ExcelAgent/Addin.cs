@@ -15,12 +15,19 @@ namespace ExcelAgent
         {
             channel = RegisterIpcChannel("ExcelAgent", "xxx1000", false);
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(ExcelDna.Testing.RemoteObject), "RemoteObject.rem", WellKnownObjectMode.Singleton);
-            ExcelDna.Testing.ExcelStartupEvent.Set();
+            try
+            {
+                ExcelDna.Testing.ExcelStartupEvent.Set();
+            }
+            catch (System.Threading.WaitHandleCannotBeOpenedException)
+            {
+                UnregisterChannel();
+            }
         }
 
         public void AutoClose()
         {
-            ChannelServices.UnregisterChannel(channel);
+            UnregisterChannel();
         }
 
         public static IpcChannel RegisterIpcChannel(string name, string portName, bool ensureSecurity)
@@ -36,6 +43,15 @@ namespace ExcelAgent
 
             ChannelServices.RegisterChannel(ipcChannel, ensureSecurity);
             return ipcChannel;
+        }
+
+        private void UnregisterChannel()
+        {
+            if (channel != null)
+            {
+                ChannelServices.UnregisterChannel(channel);
+                channel = null;
+            }
         }
 
         private IpcChannel channel;
