@@ -99,6 +99,7 @@
     <Compile Include="ExcelTestFramework.cs" />
     <Compile Include="ExcelTestFrameworkExecutor.cs" />
     <Compile Include="ExcelTestRunner.cs" />
+    <Compile Include="ExcelTestSettingsAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemoteObject.cs" />
     <Compile Include="RemoteTestAssemblyRunner.cs" />

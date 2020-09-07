@@ -21,9 +21,28 @@ namespace ExcelDna.Testing
 
         private static bool UsingCOM(ITestMethod testMethod)
         {
-            var methodAttr = testMethod.Method.GetCustomAttributes(typeof(ExcelFactAttribute)).FirstOrDefault();
-            var useCOM = methodAttr?.GetNamedArgument<object>(nameof(ExcelFactAttribute.UseCOM));
-            return useCOM != null && (bool)useCOM;
+            string useComArgument = nameof(ExcelFactAttribute.UseCOM);
+
+            object useCOM = GetNamedArg(testMethod.Method.GetCustomAttributes(typeof(ExcelFactAttribute)).FirstOrDefault(), useComArgument);
+            if (useCOM == null)
+                useCOM = GetNamedArg(testMethod.TestClass.Class.GetCustomAttributes(typeof(ExcelTestSettingsAttribute)).FirstOrDefault(), useComArgument);
+
+            return useCOM != null ? (bool)useCOM : false;
+        }
+
+        private static object GetNamedArg(IAttributeInfo attributeInfo, string argumentName)
+        {
+            if (!IsNamedArg(attributeInfo, argumentName))
+                return null;
+
+            return attributeInfo.GetNamedArgument<object>(argumentName);
+        }
+
+        private static bool IsNamedArg(IAttributeInfo attributeInfo, string argumentName)
+        {
+            if (attributeInfo is ReflectionAttributeInfo reflectionAttributeInfo)
+                return reflectionAttributeInfo.AttributeData.NamedArguments.Any(arg => arg.MemberName == argumentName);
+            return false;
         }
     }
 }
