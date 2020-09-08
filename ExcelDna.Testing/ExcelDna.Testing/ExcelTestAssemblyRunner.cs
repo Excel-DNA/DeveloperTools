@@ -99,7 +99,14 @@ namespace ExcelDna.Testing
             }
 
             TestCases = testCases;
-            return await base.RunTestCollectionsAsync(messageBus, cancellationTokenSource);
+            try
+            {
+                return await base.RunTestCollectionsAsync(messageBus, cancellationTokenSource);
+            }
+            finally
+            {
+                COMUtil.SetApplication(null);
+            }
         }
 
         IpcChannel channel;

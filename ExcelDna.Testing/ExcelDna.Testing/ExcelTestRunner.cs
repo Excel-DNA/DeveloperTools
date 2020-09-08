@@ -51,6 +51,25 @@ namespace ExcelDna.Testing
         }
 
         private Task<decimal> InvokeAsync(ExceptionAggregator aggregator)
-            => new XunitTestInvoker(Test, MessageBus, TestClass, ConstructorArguments, TestMethod, TestMethodArguments, BeforeAfterAttributes, aggregator, CancellationTokenSource).RunAsync();
+        {
+            if (TestCase.Settings.UseCOM && TestCase.Settings.Workbook != null)
+            {
+                if (TestCase.Settings.Workbook.Length == 0)
+                    COMUtil.SetWorkbook(COMUtil.Application.Workbooks.Add());
+            }
+
+            try
+            {
+                return new XunitTestInvoker(Test, MessageBus, TestClass, ConstructorArguments, TestMethod, TestMethodArguments, BeforeAfterAttributes, aggregator, CancellationTokenSource).RunAsync();
+            }
+            finally
+            {
+                if (COMUtil.Workbook != null)
+                {
+                    COMUtil.Workbook.Close(false);
+                    COMUtil.SetWorkbook(null);
+                }
+            }
+        }
     }
 }
