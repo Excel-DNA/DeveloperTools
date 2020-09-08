@@ -6,5 +6,6 @@ namespace Xunit
     public class ExcelTestSettingsAttribute : Attribute
     {
         public bool UseCOM { get; set; }
+        public string Workbook { get; set; }
     }
 }

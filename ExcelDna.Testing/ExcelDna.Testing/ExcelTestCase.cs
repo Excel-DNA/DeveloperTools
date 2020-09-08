@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit.Abstractions;
@@ -14,13 +15,13 @@ namespace ExcelDna.Testing
         {
         }
 
-        public ExcelTestCase(bool useCOM, IMessageSink diagnosticMessageSink, TestMethodDisplay defaultMethodDisplay, ITestMethod testMethod, object[] testMethodArguments = null)
+        public ExcelTestCase(TestSettings testSettings, IMessageSink diagnosticMessageSink, TestMethodDisplay defaultMethodDisplay, ITestMethod testMethod, object[] testMethodArguments = null)
             : base(diagnosticMessageSink, defaultMethodDisplay, testMethod, testMethodArguments)
         {
-            this.useCOM = useCOM;
+            this.testSettings = testSettings;
         }
 
-        public bool UseCOM => useCOM;
+        public TestSettings Settings => testSettings;
 
         public override Task<RunSummary> RunAsync(IMessageSink diagnosticMessageSink, IMessageBus messageBus, object[] constructorArguments, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource)
     => new ExcelTestCaseRunner(this, DisplayName, SkipReason, constructorArguments, TestMethodArguments, messageBus, aggregator, cancellationTokenSource).RunAsync();
@@ -28,13 +29,14 @@ namespace ExcelDna.Testing
         public override void Serialize(IXunitSerializationInfo info)
         {
             base.Serialize(info);
-            info.AddValue(nameof(useCOM), useCOM);
+            info.AddValue(nameof(testSettings.UseCOM), testSettings.UseCOM);
+            info.AddValue(nameof(testSettings.Workbook), testSettings.Workbook);
         }
 
         public override void Deserialize(IXunitSerializationInfo info)
         {
             base.Deserialize(info);
-            useCOM = info.GetValue<bool>(nameof(useCOM));
+            testSettings = new TestSettings(info.GetValue<bool>(nameof(testSettings.UseCOM)), info.GetValue<string>(nameof(testSettings.Workbook)));
         }
 
         public string SerializeToString()
@@ -49,6 +51,6 @@ namespace ExcelDna.Testing
             return (ExcelTestCase)triple.Value;
         }
 
-        private bool useCOM;
+        private TestSettings testSettings;
     }
 }

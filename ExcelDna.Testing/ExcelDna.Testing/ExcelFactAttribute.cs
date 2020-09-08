@@ -9,5 +9,6 @@ namespace Xunit
     public class ExcelFactAttribute : FactAttribute
     {
         public bool UseCOM { get; set; }
+        public string Workbook { get; set; }
     }
 }

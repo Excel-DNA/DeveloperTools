@@ -104,6 +104,7 @@
     <Compile Include="RemoteObject.cs" />
     <Compile Include="RemoteTestAssemblyRunner.cs" />
     <Compile Include="SerializableRunSummary.cs" />
+    <Compile Include="TestSettings.cs" />
     <Compile Include="VS\IntegrationHelper.cs" />
     <Compile Include="VS\NativeMethods.cs" />
     <Compile Include="VS\VisualStudioInstance.cs" />

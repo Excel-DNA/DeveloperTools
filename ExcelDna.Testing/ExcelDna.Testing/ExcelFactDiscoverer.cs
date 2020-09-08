@@ -15,19 +15,24 @@ namespace ExcelDna.Testing
         public override IEnumerable<IXunitTestCase> Discover(ITestFrameworkDiscoveryOptions discoveryOptions, ITestMethod testMethod, IAttributeInfo factAttribute)
         {
             var results = new List<IXunitTestCase>();
-            results.Add(new ExcelTestCase(UsingCOM(testMethod), DiagnosticMessageSink, discoveryOptions.MethodDisplayOrDefault(), testMethod, null));
+            results.Add(new ExcelTestCase(GetSettings(testMethod), DiagnosticMessageSink, discoveryOptions.MethodDisplayOrDefault(), testMethod, null));
             return results;
         }
 
-        private static bool UsingCOM(ITestMethod testMethod)
+        private static TestSettings GetSettings(ITestMethod testMethod)
         {
-            string useComArgument = nameof(ExcelFactAttribute.UseCOM);
+            return new TestSettings(
+                GetSetting<bool>(testMethod, nameof(ExcelFactAttribute.UseCOM)),
+                GetSetting<string>(testMethod, nameof(ExcelFactAttribute.Workbook)));
+        }
 
-            object useCOM = GetNamedArg(testMethod.Method.GetCustomAttributes(typeof(ExcelFactAttribute)).FirstOrDefault(), useComArgument);
-            if (useCOM == null)
-                useCOM = GetNamedArg(testMethod.TestClass.Class.GetCustomAttributes(typeof(ExcelTestSettingsAttribute)).FirstOrDefault(), useComArgument);
+        private static T GetSetting<T>(ITestMethod testMethod, string name)
+        {
+            object arg = GetNamedArg(testMethod.Method.GetCustomAttributes(typeof(ExcelFactAttribute)).FirstOrDefault(), name);
+            if (arg == null)
+                arg = GetNamedArg(testMethod.TestClass.Class.GetCustomAttributes(typeof(ExcelTestSettingsAttribute)).FirstOrDefault(), name);
 
-            return useCOM != null ? (bool)useCOM : false;
+            return arg is T ? (T)arg : default(T);
         }
 
         private static object GetNamedArg(IAttributeInfo attributeInfo, string argumentName)

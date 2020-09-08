@@ -37,8 +37,8 @@ namespace ExcelDna.Testing
         protected override async Task<RunSummary> RunTestCollectionsAsync(IMessageBus messageBus, CancellationTokenSource cancellationTokenSource)
         {
             IEnumerable<IXunitTestCase> localTestCases = TestCases.Except(TestCases.OfType<ExcelTestCase>());
-            IEnumerable<ExcelTestCase> excelTestCases = TestCases.OfType<ExcelTestCase>().Where(i => !i.UseCOM);
-            IEnumerable<ExcelTestCase> excelCOMTestCases = TestCases.OfType<ExcelTestCase>().Where(i => i.UseCOM);
+            IEnumerable<ExcelTestCase> excelTestCases = TestCases.OfType<ExcelTestCase>().Where(i => !i.Settings.UseCOM);
+            IEnumerable<ExcelTestCase> excelCOMTestCases = TestCases.OfType<ExcelTestCase>().Where(i => i.Settings.UseCOM);
 
             var result = await LocalRunTestCasesAsync(localTestCases, messageBus, cancellationTokenSource);
             if (excelCOMTestCases.Count() > 0)
