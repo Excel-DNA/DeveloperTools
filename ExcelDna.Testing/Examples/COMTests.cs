@@ -4,20 +4,27 @@ using Xunit;
 namespace Examples
 {
     [ExcelTestSettings(UseCOM = true)]
-    public class ComsTest
+    public class ComTests
     {
         [ExcelFact]
-        public void COMGetExcelVersion()
+        public void GetExcelVersion()
         {
             Assert.Equal("16.0", ExcelDna.Testing.COMUtil.Application.Version);
         }
 
         [ExcelFact(Workbook = "")]
-        public void COMFunctionSayHello()
+        public void FunctionSayHello()
         {
             Range functionRange = ExcelDna.Testing.COMUtil.Workbook.Sheets[1].Range["B1:B1"];
             functionRange.Formula = "=SayHello(\"world\")";
             Assert.Equal("Hello world", functionRange.Value.ToString());
+        }
+
+        [ExcelFact(Workbook = "MrExcel.xlsx")]
+        public void PreCreatedWorkbook()
+        {
+            Range cell = ExcelDna.Testing.COMUtil.Workbook.Sheets[1].Range["A2:A2"];
+            Assert.Equal("Red Ford Truck", cell.Value.ToString());
         }
     }
 }

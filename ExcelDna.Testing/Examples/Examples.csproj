@@ -86,6 +86,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Examples-AddIn.dna" />
+    <None Include="HelpExamples.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="MrExcel.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\ExcelDna.Build.props" />
   </ItemGroup>

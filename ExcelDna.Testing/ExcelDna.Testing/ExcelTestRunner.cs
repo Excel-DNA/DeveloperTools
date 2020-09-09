@@ -1,6 +1,7 @@
 ﻿using ExcelDna.Integration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -55,7 +56,14 @@ namespace ExcelDna.Testing
             if (TestCase.Settings.UseCOM && TestCase.Settings.Workbook != null)
             {
                 if (TestCase.Settings.Workbook.Length == 0)
+                {
                     COMUtil.SetWorkbook(COMUtil.Application.Workbooks.Add());
+                }
+                else
+                {
+                    string workbookPath = Path.Combine(COMUtil.TestAssemblyDirectory, TestCase.Settings.Workbook);
+                    COMUtil.SetWorkbook(COMUtil.Application.Workbooks.Open(workbookPath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0));
+                }
             }
 
             try

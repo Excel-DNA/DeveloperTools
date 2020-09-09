@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting;
@@ -91,6 +92,7 @@ namespace ExcelDna.Testing
             {
                 COMUtil.SetApplication(new Microsoft.Office.Interop.Excel.Application());
                 COMUtil.Application.RegisterXLL(ExcelRunner.GetXllPath(testAssembly.Assembly.AssemblyPath, Marshal.SizeOf(COMUtil.Application.HinstancePtr) == 8 ? Bitness.Bit64 : Bitness.Bit32));
+                COMUtil.SetTestAssemblyDirectory(Path.GetDirectoryName(testAssembly.Assembly.AssemblyPath));
             }
             catch (System.Exception e)
             {
