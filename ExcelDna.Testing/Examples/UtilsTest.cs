@@ -37,5 +37,11 @@ namespace Examples
 
             newBook.Close(false);
         }
+
+        [ExcelFact]
+        public void ApplicationVersion()
+        {
+            Assert.Equal("16.0", ExcelDna.Testing.Util.Application.Version);
+        }
     }
 }

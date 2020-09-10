@@ -90,9 +90,9 @@ namespace ExcelDna.Testing
         {
             try
             {
-                COMUtil.SetApplication(new Microsoft.Office.Interop.Excel.Application());
-                COMUtil.Application.RegisterXLL(ExcelRunner.GetXllPath(testAssembly.Assembly.AssemblyPath, Marshal.SizeOf(COMUtil.Application.HinstancePtr) == 8 ? Bitness.Bit64 : Bitness.Bit32));
-                COMUtil.SetTestAssemblyDirectory(Path.GetDirectoryName(testAssembly.Assembly.AssemblyPath));
+                Util.Application = new Microsoft.Office.Interop.Excel.Application();
+                Util.Application.RegisterXLL(ExcelRunner.GetXllPath(testAssembly.Assembly.AssemblyPath, Marshal.SizeOf(Util.Application.HinstancePtr) == 8 ? Bitness.Bit64 : Bitness.Bit32));
+                Util.TestAssemblyDirectory = Path.GetDirectoryName(testAssembly.Assembly.AssemblyPath);
             }
             catch (System.Exception e)
             {
@@ -107,7 +107,7 @@ namespace ExcelDna.Testing
             }
             finally
             {
-                COMUtil.SetApplication(null);
+                Util.Application = null;
             }
         }
 

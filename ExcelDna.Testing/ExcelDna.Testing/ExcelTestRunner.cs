@@ -57,12 +57,12 @@ namespace ExcelDna.Testing
             {
                 if (TestCase.Settings.Workbook.Length == 0)
                 {
-                    COMUtil.SetWorkbook(COMUtil.Application.Workbooks.Add());
+                    Util.Workbook = Util.Application.Workbooks.Add();
                 }
                 else
                 {
-                    string workbookPath = Path.Combine(COMUtil.TestAssemblyDirectory, TestCase.Settings.Workbook);
-                    COMUtil.SetWorkbook(COMUtil.Application.Workbooks.Open(workbookPath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0));
+                    string workbookPath = Path.Combine(Util.TestAssemblyDirectory, TestCase.Settings.Workbook);
+                    Util.Workbook = Util.Application.Workbooks.Open(workbookPath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
                 }
             }
 
@@ -72,10 +72,10 @@ namespace ExcelDna.Testing
             }
             finally
             {
-                if (COMUtil.Workbook != null)
+                if (Util.Workbook != null)
                 {
-                    COMUtil.Workbook.Close(false);
-                    COMUtil.SetWorkbook(null);
+                    Util.Workbook.Close(false);
+                    Util.Workbook = null;
                 }
             }
         }
