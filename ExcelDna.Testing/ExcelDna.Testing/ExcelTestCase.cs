@@ -15,13 +15,13 @@ namespace ExcelDna.Testing
         {
         }
 
-        public ExcelTestCase(TestSettings testSettings, IMessageSink diagnosticMessageSink, TestMethodDisplay defaultMethodDisplay, ITestMethod testMethod, object[] testMethodArguments = null)
+        public ExcelTestCase(ExcelTestSettings testSettings, IMessageSink diagnosticMessageSink, TestMethodDisplay defaultMethodDisplay, ITestMethod testMethod, object[] testMethodArguments = null)
             : base(diagnosticMessageSink, defaultMethodDisplay, testMethod, testMethodArguments)
         {
             this.testSettings = testSettings;
         }
 
-        public TestSettings Settings => testSettings;
+        public ExcelTestSettings Settings => testSettings;
 
         public override Task<RunSummary> RunAsync(IMessageSink diagnosticMessageSink, IMessageBus messageBus, object[] constructorArguments, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource)
     => new ExcelTestCaseRunner(this, DisplayName, SkipReason, constructorArguments, TestMethodArguments, messageBus, aggregator, cancellationTokenSource).RunAsync();
@@ -29,14 +29,14 @@ namespace ExcelDna.Testing
         public override void Serialize(IXunitSerializationInfo info)
         {
             base.Serialize(info);
-            info.AddValue(nameof(testSettings.UseCOM), testSettings.UseCOM);
+            info.AddValue(nameof(testSettings.OutOfProcess), testSettings.OutOfProcess);
             info.AddValue(nameof(testSettings.Workbook), testSettings.Workbook);
         }
 
         public override void Deserialize(IXunitSerializationInfo info)
         {
             base.Deserialize(info);
-            testSettings = new TestSettings(info.GetValue<bool>(nameof(testSettings.UseCOM)), info.GetValue<string>(nameof(testSettings.Workbook)));
+            testSettings = new ExcelTestSettings(info.GetValue<bool>(nameof(testSettings.OutOfProcess)), info.GetValue<string>(nameof(testSettings.Workbook)));
         }
 
         public string SerializeToString()
@@ -51,6 +51,6 @@ namespace ExcelDna.Testing
             return (ExcelTestCase)triple.Value;
         }
 
-        private TestSettings testSettings;
+        private ExcelTestSettings testSettings;
     }
 }

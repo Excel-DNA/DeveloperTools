@@ -23,7 +23,7 @@ namespace ExcelDna.Testing
 
         protected override Task<decimal> InvokeTestMethodAsync(ExceptionAggregator aggregator)
         {
-            var result = !TestCase.Settings.UseCOM
+            var result = !TestCase.Settings.OutOfProcess
                ? InvokeOnUIThreadAsync(aggregator)
                : InvokeAsync(aggregator);
 

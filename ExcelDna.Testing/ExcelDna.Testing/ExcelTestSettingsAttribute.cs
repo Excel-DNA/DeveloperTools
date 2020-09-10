@@ -1,11 +1,15 @@
-﻿using System;
+﻿using ExcelDna.Testing;
+using System;
 
 namespace Xunit
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class ExcelTestSettingsAttribute : Attribute
+    public class ExcelTestSettingsAttribute : Attribute, ITestSettings
     {
-        public bool UseCOM { get; set; }
+        /// <inheritdoc />
+        public bool OutOfProcess { get; set; }
+
+        /// <inheritdoc />
         public string Workbook { get; set; }
     }
 }

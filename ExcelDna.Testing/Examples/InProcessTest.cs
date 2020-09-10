@@ -3,11 +3,9 @@ using Microsoft.Office.Interop.Excel;
 using System;
 using Xunit;
 
-[assembly: Xunit.TestFramework("Xunit.ExcelTestFramework", "ExcelDna.Testing")]
-
 namespace Examples
 {
-    public class UtilsTest
+    public class InProcessTest
     {
         [Fact]
         public void RegularTest()

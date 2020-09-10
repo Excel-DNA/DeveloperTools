@@ -19,10 +19,10 @@ namespace ExcelDna.Testing
             return results;
         }
 
-        private static TestSettings GetSettings(ITestMethod testMethod)
+        private static ExcelTestSettings GetSettings(ITestMethod testMethod)
         {
-            return new TestSettings(
-                GetSetting<bool>(testMethod, nameof(ExcelFactAttribute.UseCOM)),
+            return new ExcelTestSettings(
+                GetSetting<bool>(testMethod, nameof(ExcelFactAttribute.OutOfProcess)),
                 GetSetting<string>(testMethod, nameof(ExcelFactAttribute.Workbook)));
         }
 

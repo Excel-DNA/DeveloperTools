@@ -3,8 +3,8 @@ using Xunit;
 
 namespace Examples
 {
-    [ExcelTestSettings(UseCOM = true)]
-    public class ComTests
+    [ExcelTestSettings(OutOfProcess = true)]
+    public class OutOfProcessTests
     {
         [ExcelFact]
         public void GetExcelVersion()

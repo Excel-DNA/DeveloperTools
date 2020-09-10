@@ -6,9 +6,12 @@ namespace Xunit
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     [XunitTestCaseDiscoverer("ExcelDna.Testing." + nameof(ExcelFactDiscoverer), "ExcelDna.Testing")]
-    public class ExcelFactAttribute : FactAttribute
+    public class ExcelFactAttribute : FactAttribute, ITestSettings
     {
-        public bool UseCOM { get; set; }
+        /// <inheritdoc />
+        public bool OutOfProcess { get; set; }
+
+        /// <inheritdoc />
         public string Workbook { get; set; }
     }
 }
