@@ -53,7 +53,7 @@ namespace ExcelDna.Testing
 
         private Task<decimal> InvokeAsync(ExceptionAggregator aggregator)
         {
-            if (TestCase.Settings.UseCOM && TestCase.Settings.Workbook != null)
+            if (TestCase.Settings.Workbook != null)
             {
                 if (TestCase.Settings.Workbook.Length == 0)
                 {

@@ -21,27 +21,29 @@ namespace Examples
             Assert.Equal("16.0", Utils.GetVersion());
         }
 
-        [ExcelFact]
+        [ExcelFact(Workbook = "")]
         public void SetCellValue()
         {
-            Application app = (Application)ExcelDnaUtil.Application;
-            var newBook = app.Workbooks.Add();
-
-            Range targetRange = newBook.Sheets[1].Range["A1:C2"];
+            Range targetRange = ExcelDna.Testing.Util.Workbook.Sheets[1].Range["A1:C2"];
 
             object[,] newValues = new object[,] { { "One", 2, "Three" }, { true, DateTime.Now, "" } };
             targetRange.Value = newValues;
 
             var cell = new ExcelReference(0, 0);
             Assert.Equal("One", cell.GetValue().ToString());
-
-            newBook.Close(false);
         }
 
         [ExcelFact]
         public void ApplicationVersion()
         {
             Assert.Equal("16.0", ExcelDna.Testing.Util.Application.Version);
+        }
+
+        [ExcelFact(Workbook = "MrExcel.xlsx")]
+        public void PreCreatedWorkbook()
+        {
+            Range cell = ExcelDna.Testing.Util.Workbook.Sheets[1].Range["A2:A2"];
+            Assert.Equal("Red Ford Truck", cell.Value.ToString());
         }
     }
 }

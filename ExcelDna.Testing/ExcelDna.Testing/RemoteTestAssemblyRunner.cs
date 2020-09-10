@@ -16,6 +16,7 @@ namespace ExcelDna.Testing
 
         public RemoteTestAssemblyRunner(ITestAssembly testAssembly, IEnumerable<ExcelTestCase> testCases, IMessageSink diagnosticMessageSink, IMessageSink executionMessageSink, ITestFrameworkExecutionOptions executionOptions, IMessageBus messageBus)
         {
+            Util.TestAssemblyDirectory = System.IO.Path.GetDirectoryName(testAssembly.Assembly.AssemblyPath);
             ExcelDna.Integration.ExcelAsyncUtil.QueueAsMacro(delegate
             {
                 ExcelDna.Testing.Util.Application = (Microsoft.Office.Interop.Excel.Application)ExcelDnaUtil.Application;
