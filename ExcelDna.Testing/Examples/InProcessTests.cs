@@ -5,14 +5,8 @@ using Xunit;
 
 namespace Examples
 {
-    public class InProcessTest
+    public class InProcessTests
     {
-        [Fact]
-        public void RegularTest()
-        {
-            Assert.Equal(4, 2 + 2);
-        }
-
         [ExcelFact]
         public void GetExcelVersion()
         {
