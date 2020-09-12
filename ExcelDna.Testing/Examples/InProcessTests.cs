@@ -37,5 +37,14 @@ namespace Examples
             Range cell = ExcelDna.Testing.Util.Workbook.Sheets[1].Range["A2:A2"];
             Assert.Equal("Red Ford Truck", cell.Value.ToString());
         }
+
+        [ExcelFact(Workbook = "")]
+        public void ClickRibbonButton()
+        {
+            ExcelDna.Testing.Automation.ClickRibbonButton("ExamplesAddin", "My Button");
+
+            var cell = new ExcelReference(0, 0);
+            Assert.Equal("One", cell.GetValue().ToString());
+        }
     }
 }
