@@ -3,7 +3,7 @@ using ExcelDna.Integration;
 using ExcelDna.Integration.CustomUI;
 using Microsoft.Office.Interop.Excel;
 
-namespace Examples
+namespace ExampleAddin
 {
     [ComVisible(true)]
     public class MyRibbon : ExcelRibbon

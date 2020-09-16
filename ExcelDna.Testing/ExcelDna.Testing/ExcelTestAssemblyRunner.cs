@@ -91,7 +91,9 @@ namespace ExcelDna.Testing
             try
             {
                 Util.Application = new Microsoft.Office.Interop.Excel.Application();
-                Util.Application.RegisterXLL(ExcelRunner.GetXllPath(testAssembly.Assembly.AssemblyPath, Marshal.SizeOf(Util.Application.HinstancePtr) == 8 ? Bitness.Bit64 : Bitness.Bit32));
+                Bitness bitness = Marshal.SizeOf(Util.Application.HinstancePtr) == 8 ? Bitness.Bit64 : Bitness.Bit32;
+                Util.Application.RegisterXLL(ExcelRunner.GetXllPath(testAssembly.Assembly.AssemblyPath, @"..\..\..\ExampleAddin\bin\Debug\ExampleAddin-AddIn", bitness));
+                Util.Application.RegisterXLL(ExcelRunner.GetTestsXllPath(testAssembly.Assembly.AssemblyPath, bitness));
                 Util.TestAssemblyDirectory = Path.GetDirectoryName(testAssembly.Assembly.AssemblyPath);
             }
             catch (System.Exception e)

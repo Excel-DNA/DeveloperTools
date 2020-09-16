@@ -1,6 +1,6 @@
 ﻿using ExcelDna.Integration;
 
-namespace Examples
+namespace ExampleAddin
 {
     public static class MyFunctions
     {

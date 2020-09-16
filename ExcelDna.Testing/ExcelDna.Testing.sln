@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "Examples\Exampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAgent", "ExcelAgent\ExcelAgent.csproj", "{5262A385-DD7E-4C43-92CA-ECBD8804AF8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleAddin", "ExampleAddin\ExampleAddin.csproj", "{2054617E-5831-428B-BECA-997E1797B9F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5262A385-DD7E-4C43-92CA-ECBD8804AF8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5262A385-DD7E-4C43-92CA-ECBD8804AF8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5262A385-DD7E-4C43-92CA-ECBD8804AF8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2054617E-5831-428B-BECA-997E1797B9F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2054617E-5831-428B-BECA-997E1797B9F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2054617E-5831-428B-BECA-997E1797B9F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2054617E-5831-428B-BECA-997E1797B9F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

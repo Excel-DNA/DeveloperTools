@@ -1,8 +1,6 @@
-﻿using Examples;
-using ExcelDna.Integration;
-using Microsoft.Office.Interop.Excel;
+﻿using ExcelDna.Integration;
 
-namespace test_ExcelAddin2
+namespace ExampleAddin
 {
     public static class MyCommands
     {
@@ -10,10 +8,10 @@ namespace test_ExcelAddin2
         // * Pressing the quick menu under the Add-ins tab
         // * Pressing the shortcut key Ctrl + Shift + D
         // * Typing the name into the Alt+F8 Macro dialog (add-in macros won't we shown on this list, though)
-        [ExcelCommand(MenuName = "Example", MenuText = "Dump Data")]
-        public static void DumpData()
+        [ExcelCommand(MenuName = "ExampleAddin", MenuText = "Dump Data", ShortCut = "^D")]
+        public static void DumpDataExampleAddin()
         {
-            System.Windows.Forms.MessageBox.Show(Utils.GetVersion());
+            System.Windows.Forms.MessageBox.Show("hi");
         }
     }
 }

@@ -41,7 +41,7 @@ namespace Examples
         [ExcelFact(Workbook = "")]
         public void ClickRibbonButton()
         {
-            ExcelDna.Testing.Automation.ClickRibbonButton("ExamplesAddin", "My Button");
+            ExcelDna.Testing.Automation.ClickRibbonButton("ExampleAddin", "My Button");
 
             var cell = new ExcelReference(0, 0);
             Assert.Equal("One", cell.GetValue().ToString());
