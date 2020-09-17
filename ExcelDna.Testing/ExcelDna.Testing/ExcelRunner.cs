@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 
@@ -12,15 +13,20 @@ namespace ExcelDna.Testing
             excelDetected = excelDetector.TryFindLatestExcel(out excelExePath) && excelDetector.TryFindExcelBitness(excelExePath, out bitness);
         }
 
-        public Process Start(string addinAssemblyPath)
+        public Process Start(string addinAssemblyPath, IEnumerable<string> xlls)
         {
             if (!excelDetected)
                 throw new ApplicationException("Can't find an installed version of Excel.");
 
-            string externalXllRelativePath = @"..\..\..\ExampleAddin\bin\Debug\ExampleAddin-AddIn";
+            string arguments = "";
+            foreach (string externalXllRelativePath in xlls)
+            {
+                arguments += Quote(GetXllPath(addinAssemblyPath, externalXllRelativePath, bitness)) + " ";
+            }
+
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = excelExePath;
-            info.Arguments = Quote(GetXllPath(addinAssemblyPath, externalXllRelativePath, bitness)) + " " + Quote(GetTestsXllPath(addinAssemblyPath, bitness));
+            info.Arguments = arguments + Quote(GetTestsXllPath(addinAssemblyPath, bitness));
             return Process.Start(info);
         }
 

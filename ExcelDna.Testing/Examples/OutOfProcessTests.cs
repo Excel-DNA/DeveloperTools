@@ -12,7 +12,7 @@ namespace Examples
             Assert.Equal("16.0", ExcelDna.Testing.Util.Application.Version);
         }
 
-        [ExcelFact(Workbook = "")]
+        [ExcelFact(Workbook = "", XLL = @"..\..\..\ExampleAddin\bin\Debug\ExampleAddin-AddIn")]
         public void FunctionSayHello()
         {
             Range functionRange = ExcelDna.Testing.Util.Workbook.Sheets[1].Range["B1:B1"];

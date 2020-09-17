@@ -31,12 +31,13 @@ namespace ExcelDna.Testing
             base.Serialize(info);
             info.AddValue(nameof(testSettings.OutOfProcess), testSettings.OutOfProcess);
             info.AddValue(nameof(testSettings.Workbook), testSettings.Workbook);
+            info.AddValue(nameof(testSettings.XLL), testSettings.XLL);
         }
 
         public override void Deserialize(IXunitSerializationInfo info)
         {
             base.Deserialize(info);
-            testSettings = new ExcelTestSettings(info.GetValue<bool>(nameof(testSettings.OutOfProcess)), info.GetValue<string>(nameof(testSettings.Workbook)));
+            testSettings = new ExcelTestSettings(info.GetValue<bool>(nameof(testSettings.OutOfProcess)), info.GetValue<string>(nameof(testSettings.Workbook)), info.GetValue<string>(nameof(testSettings.XLL)));
         }
 
         public string SerializeToString()

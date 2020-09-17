@@ -11,5 +11,10 @@
         /// A relative path to workbook file to open. Use empty path to create a new workbook.
         /// </summary>
         string Workbook { get; set; }
+
+        /// <summary>
+        /// A relative path to .xll add-in to load. Without bitness and .xll extension.
+        /// </summary>
+        string XLL { get; set; }
     }
 }

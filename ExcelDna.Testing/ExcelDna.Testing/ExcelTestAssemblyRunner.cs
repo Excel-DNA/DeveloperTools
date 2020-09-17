@@ -64,7 +64,7 @@ namespace ExcelDna.Testing
             try
             {
                 ExcelStartupEvent.Create();
-                Process excelProcess = excelRunner.Start(testAssembly.Assembly.AssemblyPath);
+                Process excelProcess = excelRunner.Start(testAssembly.Assembly.AssemblyPath, GetXLLs(testCases));
                 if (!ExcelStartupEvent.Wait(30000))
                     throw new System.ApplicationException("Excel startup failed.");
 
@@ -92,7 +92,8 @@ namespace ExcelDna.Testing
             {
                 Util.Application = new Microsoft.Office.Interop.Excel.Application();
                 Bitness bitness = Marshal.SizeOf(Util.Application.HinstancePtr) == 8 ? Bitness.Bit64 : Bitness.Bit32;
-                Util.Application.RegisterXLL(ExcelRunner.GetXllPath(testAssembly.Assembly.AssemblyPath, @"..\..\..\ExampleAddin\bin\Debug\ExampleAddin-AddIn", bitness));
+                foreach (string xll in GetXLLs(testCases))
+                    Util.Application.RegisterXLL(ExcelRunner.GetXllPath(testAssembly.Assembly.AssemblyPath, xll, bitness));
                 Util.Application.RegisterXLL(ExcelRunner.GetTestsXllPath(testAssembly.Assembly.AssemblyPath, bitness));
                 Util.TestAssemblyDirectory = Path.GetDirectoryName(testAssembly.Assembly.AssemblyPath);
             }
@@ -111,6 +112,14 @@ namespace ExcelDna.Testing
             {
                 Util.Application = null;
             }
+        }
+
+        private static List<string> GetXLLs(IEnumerable<ExcelTestCase> testCases)
+        {
+            return testCases.Select(i => i.Settings.XLL).
+                Where(i => i != null).
+                Distinct(StringComparer.OrdinalIgnoreCase).
+                ToList();
         }
 
         IpcChannel channel;
