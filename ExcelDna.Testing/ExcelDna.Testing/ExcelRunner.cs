@@ -26,18 +26,18 @@ namespace ExcelDna.Testing
 
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = excelExePath;
-            info.Arguments = arguments + Quote(GetTestsXllPath(addinAssemblyPath, bitness));
+            info.Arguments = arguments + Quote(GetExcelAgentXllPath(addinAssemblyPath, bitness));
             return Process.Start(info);
-        }
-
-        public static string GetTestsXllPath(string addinAssemblyPath, Bitness bitness)
-        {
-            return GetXllPath(addinAssemblyPath, Path.GetFileNameWithoutExtension(addinAssemblyPath) + "-AddIn", bitness);
         }
 
         public static string GetXllPath(string addinAssemblyPath, string externalXllRelativePath, Bitness bitness)
         {
             return Path.Combine(Path.GetDirectoryName(addinAssemblyPath), externalXllRelativePath + (bitness == Bitness.Bit64 ? "64" : "") + ".xll");
+        }
+
+        private static string GetExcelAgentXllPath(string addinAssemblyPath, Bitness bitness)
+        {
+            return GetXllPath(addinAssemblyPath, @"..\..\..\ExcelAgent\bin\Debug\ExcelAgent-AddIn", bitness);
         }
 
         private string Quote(string s)
