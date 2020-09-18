@@ -13,6 +13,6 @@ namespace Xunit
         public string Workbook { get; set; }
 
         /// <inheritdoc />
-        public string XLL { get; set; }
+        public string AddIn { get; set; }
     }
 }

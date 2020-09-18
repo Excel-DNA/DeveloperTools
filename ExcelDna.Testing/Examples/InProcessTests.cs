@@ -38,7 +38,7 @@ namespace Examples
             Assert.Equal("Red Ford Truck", cell.Value.ToString());
         }
 
-        [ExcelFact(Workbook = "", XLL = @"..\..\..\ExampleAddin\bin\Debug\ExampleAddin-AddIn")]
+        [ExcelFact(Workbook = "", AddIn = @"..\..\..\ExampleAddin\bin\Debug\ExampleAddin-AddIn")]
         public void ClickRibbonButton()
         {
             ExcelDna.Testing.Automation.ClickRibbonButton("ExampleAddin", "My Button");

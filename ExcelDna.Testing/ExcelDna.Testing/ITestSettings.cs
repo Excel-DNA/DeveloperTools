@@ -15,6 +15,6 @@
         /// <summary>
         /// A relative path to .xll add-in to load. Without bitness and .xll extension.
         /// </summary>
-        string XLL { get; set; }
+        string AddIn { get; set; }
     }
 }

@@ -13,15 +13,15 @@ namespace ExcelDna.Testing
             excelDetected = excelDetector.TryFindLatestExcel(out excelExePath) && excelDetector.TryFindExcelBitness(excelExePath, out bitness);
         }
 
-        public Process Start(string addinAssemblyPath, IEnumerable<string> xlls)
+        public Process Start(string addinAssemblyPath, IEnumerable<string> addins)
         {
             if (!excelDetected)
                 throw new ApplicationException("Can't find an installed version of Excel.");
 
             string arguments = "";
-            foreach (string externalXllRelativePath in xlls)
+            foreach (string externalAddinRelativePath in addins)
             {
-                arguments += Quote(GetXllPath(addinAssemblyPath, externalXllRelativePath, bitness)) + " ";
+                arguments += Quote(GetXllPath(addinAssemblyPath, externalAddinRelativePath, bitness)) + " ";
             }
 
             ProcessStartInfo info = new ProcessStartInfo();

@@ -64,7 +64,7 @@ namespace ExcelDna.Testing
             try
             {
                 ExcelStartupEvent.Create();
-                Process excelProcess = excelRunner.Start(testAssembly.Assembly.AssemblyPath, GetXLLs(testCases));
+                Process excelProcess = excelRunner.Start(testAssembly.Assembly.AssemblyPath, GetAddins(testCases));
                 if (!ExcelStartupEvent.Wait(30000))
                     throw new System.ApplicationException("Excel startup failed.");
 
@@ -92,9 +92,8 @@ namespace ExcelDna.Testing
             {
                 Util.Application = new Microsoft.Office.Interop.Excel.Application();
                 Bitness bitness = Marshal.SizeOf(Util.Application.HinstancePtr) == 8 ? Bitness.Bit64 : Bitness.Bit32;
-                foreach (string xll in GetXLLs(testCases))
-                    Util.Application.RegisterXLL(ExcelRunner.GetXllPath(testAssembly.Assembly.AssemblyPath, xll, bitness));
-                Util.Application.RegisterXLL(ExcelRunner.GetTestsXllPath(testAssembly.Assembly.AssemblyPath, bitness));
+                foreach (string addin in GetAddins(testCases))
+                    Util.Application.RegisterXLL(ExcelRunner.GetXllPath(testAssembly.Assembly.AssemblyPath, addin, bitness));
                 Util.TestAssemblyDirectory = Path.GetDirectoryName(testAssembly.Assembly.AssemblyPath);
             }
             catch (System.Exception e)
@@ -114,9 +113,9 @@ namespace ExcelDna.Testing
             }
         }
 
-        private static List<string> GetXLLs(IEnumerable<ExcelTestCase> testCases)
+        private static List<string> GetAddins(IEnumerable<ExcelTestCase> testCases)
         {
-            return testCases.Select(i => i.Settings.XLL).
+            return testCases.Select(i => i.Settings.AddIn).
                 Where(i => i != null).
                 Distinct(StringComparer.OrdinalIgnoreCase).
                 ToList();
@@ -206,6 +205,5 @@ namespace ExcelDna.Testing
             public bool QueueMessage(IMessageSinkMessage message)
                 => OnMessageCallback(message);
         }
-
     }
 }
