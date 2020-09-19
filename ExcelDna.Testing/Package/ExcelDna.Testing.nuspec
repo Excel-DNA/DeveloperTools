@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>ExcelDna.Testing</id>
+        <version>1.0.0</version>
+        <title>Excel-DNA Add-in Integration Testing</title>
+        <authors>Govert van Drimmelen</authors>
+        <owners>Govert van Drimmelen</owners>
+        <projectUrl>http://excel-dna.net</projectUrl>
+        <iconUrl>http://docs.excel-dna.net/NuGetIcon.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Integration testing package for Excel add-ins.</description>
+        <summary>Integration testing package for Excel add-ins.</summary>
+        <tags>excel exceldna excel-dna xunit</tags>
+      <dependencies>
+        <dependency id="ExcelDna.Integration" version="[1.1.0]" />
+        <dependency id="ExcelDna.Interop" version="[14.0.1]" />
+        <dependency id="Microsoft.VisualStudio.OLE.Interop" version="16.7.30328.74" />
+        <dependency id="xunit.runner.visualstudio" version="2.4.3" />
+        <dependency id="xunit.abstractions" version="2.0.3" />
+        <dependency id="xunit" version="2.4.1" />
+        <dependency id="xunit.extensibility.core" version="2.4.1" />
+        <dependency id="xunit.extensibility.execution" version="2.4.1" />
+      </dependencies>
+    </metadata>
+    <files>
+        <file src="..\ExcelDna.Testing\bin\Release\ExcelDna.Testing.dll" target="lib\ExcelDna.Testing.dll" />
+        <file src="..\ExcelAgent\bin\Release\ExcelAgent-AddIn64-packed.xll" target="Build\ExcelAgent64.xll" />
+        <file src="..\ExcelAgent\bin\Release\ExcelAgent-AddIn-packed.xll" target="Build\ExcelAgent.xll" />
+        <file src="build\ExcelDna.Testing.targets" target="Build\" />
+    </files>
+</package>
