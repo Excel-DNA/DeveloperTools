@@ -98,6 +98,10 @@
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExcelAgent\ExcelAgent.csproj">
+      <Project>{5262a385-dd7e-4c43-92ca-ecbd8804af8e}</Project>
+      <Name>ExcelAgent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExcelDna.Testing\ExcelDna.Testing.csproj">
       <Project>{7e1f6558-d102-4ccf-a770-c2c82416b70a}</Project>
       <Name>ExcelDna.Testing</Name>
@@ -113,4 +117,8 @@
     <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.4.3\build\net452\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.4.3\build\net452\xunit.runner.visualstudio.props'))" />
   </Target>
   <Import Project="..\packages\xunit.core.2.4.1\build\xunit.core.targets" Condition="Exists('..\packages\xunit.core.2.4.1\build\xunit.core.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /y "$(SolutionDir)ExcelAgent\bin\$(ConfigurationName)\ExcelAgent-AddIn64-packed.xll" "$(TargetDir)ExcelAgent64.xll"
+copy /y "$(SolutionDir)ExcelAgent\bin\$(ConfigurationName)\ExcelAgent-AddIn-packed.xll" "$(TargetDir)ExcelAgent.xll"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

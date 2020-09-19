@@ -37,7 +37,7 @@ namespace ExcelDna.Testing
 
         private static string GetExcelAgentXllPath(string addinAssemblyPath, Bitness bitness)
         {
-            return GetXllPath(addinAssemblyPath, @"..\..\..\ExcelAgent\bin\Debug\ExcelAgent-AddIn", bitness);
+            return GetXllPath(addinAssemblyPath, "ExcelAgent", bitness);
         }
 
         private string Quote(string s)
