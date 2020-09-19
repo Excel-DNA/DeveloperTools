@@ -75,7 +75,7 @@ namespace ExampleAddin {
         ///&lt;customUI xmlns=&apos;http://schemas.microsoft.com/office/2009/07/customui&apos; loadImage=&apos;LoadImage&apos;&gt;
         ///	&lt;ribbon&gt;
         ///		&lt;tabs&gt;
-        ///			&lt;tab id=&apos;tab1&apos; label=&apos;ExamplesAddin&apos;&gt;
+        ///			&lt;tab id=&apos;tab1&apos; label=&apos;ExampleAddin&apos;&gt;
         ///				&lt;group id=&apos;group1&apos; label=&apos;My Group&apos;&gt;
         ///					&lt;button id=&apos;button1&apos; label=&apos;My Button&apos; onAction=&apos;OnButtonPressed&apos; image=&apos;Image1&apos;/&gt;
         ///				&lt;/group&gt;
