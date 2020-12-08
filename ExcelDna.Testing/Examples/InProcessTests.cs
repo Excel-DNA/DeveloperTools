@@ -46,5 +46,16 @@ namespace Examples
             var cell = new ExcelReference(0, 0);
             Assert.Equal("One", cell.GetValue().ToString());
         }
+
+        [ExcelFact(Workbook = "", AddIn = @"..\..\..\ExampleAddin\bin\Debug\ExampleAddin-AddIn")]
+        public void AsyncFunctionTest()
+        {
+            Range targetRange = ExcelDna.Testing.Util.Workbook.Sheets[1].Range["A1"];
+            targetRange.Formula = "=MyAsyncFunction()";
+
+            ExcelDna.Testing.Automation.WaitFor(() => targetRange.Value == "Completed", 1000);
+
+            Assert.Equal("Completed", targetRange.Value);
+        }
     }
 }

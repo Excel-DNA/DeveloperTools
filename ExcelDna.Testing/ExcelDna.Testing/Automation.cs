@@ -26,5 +26,20 @@ namespace ExcelDna.Testing
             (button.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern).Invoke();
             System.Windows.Forms.Application.DoEvents(); // Forcing the Invoke message to be processed now.
         }
+
+        public static void Wait(int millisecondsTimeout)
+        {
+            WaitFor(() => false, millisecondsTimeout);
+        }
+
+        public static void WaitFor(System.Func<bool> condition, int millisecondsTimeout)
+        {
+            System.DateTime start = System.DateTime.UtcNow;
+            while ((System.DateTime.UtcNow - start).TotalMilliseconds < millisecondsTimeout && !condition())
+            {
+                System.Windows.Forms.Application.DoEvents();
+                System.Threading.Thread.Sleep(10);
+            }
+        }
     }
 }
