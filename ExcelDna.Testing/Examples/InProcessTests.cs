@@ -57,5 +57,15 @@ namespace Examples
 
             Assert.Equal("Completed", targetRange.Value);
         }
+
+        [ExcelFact(Workbook = "", AddIn = @"..\..\..\ExampleAddinNET6\bin\Debug\net6.0-windows\ExampleAddinNET6-AddIn")]
+        public void FunctionTestNET6()
+        {
+            Range targetRange = ExcelDna.Testing.Util.Workbook.Sheets[1].Range["A1"];
+            targetRange.Formula = "=SayHelloNET6(\"world\")";
+
+            Range cell = ExcelDna.Testing.Util.Workbook.Sheets[1].Range["A1:A1"];
+            Assert.Equal("Hello .NET6 world", cell.Value.ToString());
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30413.136
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32408.312
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDna.Testing", "ExcelDna.Testing\ExcelDna.Testing.csproj", "{7E1F6558-D102-4CCF-A770-C2C82416B70A}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAgent", "ExcelAgent\ExcelAgent.csproj", "{5262A385-DD7E-4C43-92CA-ECBD8804AF8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleAddin", "ExampleAddin\ExampleAddin.csproj", "{2054617E-5831-428B-BECA-997E1797B9F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleAddinNET6", "ExampleAddinNET6\ExampleAddinNET6.csproj", "{5440D7B6-D030-4A47-960D-E056710E50F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2054617E-5831-428B-BECA-997E1797B9F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2054617E-5831-428B-BECA-997E1797B9F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2054617E-5831-428B-BECA-997E1797B9F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5440D7B6-D030-4A47-960D-E056710E50F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5440D7B6-D030-4A47-960D-E056710E50F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5440D7B6-D030-4A47-960D-E056710E50F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5440D7B6-D030-4A47-960D-E056710E50F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

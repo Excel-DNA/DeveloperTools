@@ -6,3 +6,4 @@
 *.nupkg
 /TaskCanvas.TaskCanvasOF
 *.TaskCanvasSL
+/ExcelDna.Testing/ExampleAddinNET6/Properties/launchSettings.json
