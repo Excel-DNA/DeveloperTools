@@ -13,10 +13,11 @@ namespace ExcelDna.Testing
 {
     public class RemoteObject : LongLivedMarshalByRefObject
     {
-        public RemoteTestAssemblyRunner CreateTestAssemblyRunner(string testAssemblyPath, string testAssemblyConfigurationFile, ExcelTestCase[] testCases, IMessageSink diagnosticMessageSink, IMessageSink executionMessageSink, ITestFrameworkExecutionOptions executionOptions, IMessageBus messageBus)
+        public SerializableRunSummary RunTests(string testAssemblyPath, string testAssemblyConfigurationFile, ExcelTestCase[] testCases, IMessageSink diagnosticMessageSink, IMessageSink executionMessageSink, ITestFrameworkExecutionOptions executionOptions, IMessageBus messageBus)
         {
             var testAssembly = new TestAssembly(new ReflectionAssemblyInfo(Assembly.LoadFrom(testAssemblyPath)), testAssemblyConfigurationFile);
-            return new RemoteTestAssemblyRunner(testAssembly, testCases, diagnosticMessageSink, executionMessageSink, executionOptions, messageBus);
+            RemoteTestAssemblyRunner runner = new RemoteTestAssemblyRunner(testAssembly, testCases, diagnosticMessageSink, executionMessageSink, executionOptions, messageBus);
+            return runner.Run();
         }
 
         public void CloseHost()

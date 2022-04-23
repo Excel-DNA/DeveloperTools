@@ -10,7 +10,7 @@ using Xunit.Sdk;
 
 namespace ExcelDna.Testing
 {
-    public sealed class RemoteTestAssemblyRunner : LongLivedMarshalByRefObject, IDisposable
+    public sealed class RemoteTestAssemblyRunner : IDisposable
     {
         private readonly XunitTestAssemblyRunner runner;
 

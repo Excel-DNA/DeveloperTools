@@ -68,14 +68,40 @@ namespace ExcelDna.Testing
                 if (!ExcelStartupEvent.Wait(30000))
                     throw new System.ApplicationException("Excel startup failed.");
 
-                channel = RegisterIpcChannel("ExcelDna.Testing.ClientChannel", Guid.NewGuid().ToString(), false);
-                RemoteObject remoteObject = (RemoteObject)RemotingServices.Connect(typeof(RemoteObject), "ipc://xxx1000/RemoteObject.rem");
-                RemoteTestAssemblyRunner remoteTestAssemblyRunner = CreateRemoteTestAssemblyRunner(testCases, remoteObject, cancellationTokenSource, messageBus);
-
                 if (Debugger.IsAttached)
                     VS.VisualStudioInstance.AttachDebugger(excelProcess);
 
-                result = remoteTestAssemblyRunner.Run();
+                channel = RegisterIpcChannel("ExcelDna.Testing.ClientChannel", Guid.NewGuid().ToString(), false);
+                RemoteObject remoteObject = (RemoteObject)RemotingServices.Connect(typeof(RemoteObject), "ipc://xxx1000/RemoteObject.rem");
+
+                var diagnosticSink = new DynMessageSink(diagnosticMessageSink, message =>
+                {
+                    if (cancellationTokenSource.Token.IsCancellationRequested)
+                        return false;
+
+                    return diagnosticMessageSink.OnMessage(message);
+                });
+
+                var bus = new DynMessageBus(messageBus, message =>
+                {
+                    if (cancellationTokenSource.Token.IsCancellationRequested)
+                        return false;
+
+                    switch (message)
+                    {
+                        case ITestAssemblyStarting assemblyStarting:
+                        case ITestAssemblyFinished assemblyFinished:
+                            return true;
+                        case ITestCaseStarting testCaseStarting:
+                            break;
+                        case ITestCaseFinished testCaseFinished:
+                            break;
+                    }
+
+                    return messageBus.QueueMessage(message);
+                });
+
+                result = remoteObject.RunTests(testAssembly.Assembly.AssemblyPath, testAssembly.ConfigFileName, testCases.ToArray(), diagnosticSink, null, executionOptions, bus);
                 remoteObject.CloseHost();
             }
             catch (System.Exception e)
@@ -136,38 +162,6 @@ namespace ExcelDna.Testing
 
             ChannelServices.RegisterChannel(ipcChannel, ensureSecurity);
             return ipcChannel;
-        }
-
-        private RemoteTestAssemblyRunner CreateRemoteTestAssemblyRunner(IEnumerable<ExcelTestCase> testCases, RemoteObject remoteObject, CancellationTokenSource cancellationTokenSource, IMessageBus messageBus)
-        {
-            var diagnosticSink = new DynMessageSink(diagnosticMessageSink, message =>
-            {
-                if (cancellationTokenSource.Token.IsCancellationRequested)
-                    return false;
-
-                return diagnosticMessageSink.OnMessage(message);
-            });
-
-            var bus = new DynMessageBus(messageBus, message =>
-            {
-                if (cancellationTokenSource.Token.IsCancellationRequested)
-                    return false;
-
-                switch (message)
-                {
-                    case ITestAssemblyStarting assemblyStarting:
-                    case ITestAssemblyFinished assemblyFinished:
-                        return true;
-                    case ITestCaseStarting testCaseStarting:
-                        break;
-                    case ITestCaseFinished testCaseFinished:
-                        break;
-                }
-
-                return messageBus.QueueMessage(message);
-            });
-
-            return remoteObject.CreateTestAssemblyRunner(testAssembly.Assembly.AssemblyPath, testAssembly.ConfigFileName, testCases.ToArray(), diagnosticSink, null, executionOptions, bus);
         }
 
         private class DynMessageSink : LongLivedMarshalByRefObject, IMessageSink
