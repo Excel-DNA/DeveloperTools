@@ -84,15 +84,7 @@ namespace ExcelDna.Testing
                             break;
                     }
 
-                    try
-                    {
-                        return messageBus.QueueMessage(message);
-                    }
-                    catch
-                    {
-                    }
-
-                    return false;
+                    return messageBus.QueueMessage(message);
                 });
 
                 using (var stream = new NamedPipeClientStream(".", "ExcelDna.Testing", PipeDirection.InOut, PipeOptions.Asynchronous))

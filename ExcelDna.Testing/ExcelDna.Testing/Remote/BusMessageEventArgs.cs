@@ -23,13 +23,7 @@ namespace ExcelDna.Testing.Remote
                 }
             }
 
-            try
-            {
-                SerializedMessage = Newtonsoft.Json.JsonConvert.SerializeObject(message, serializerSettings);
-            }
-            catch
-            {
-            }
+            SerializedMessage = Newtonsoft.Json.JsonConvert.SerializeObject(message, serializerSettings);
         }
 
         public IMessageSinkMessage GetMessage()
@@ -37,22 +31,14 @@ namespace ExcelDna.Testing.Remote
             if (SerializedMessage == null)
                 return null;
 
-            try
+            if (SerializedMessage.Contains(testFailed))
             {
-                if (SerializedMessage.Contains(testFailed))
-                {
-                    SerializedMessage = SerializedMessage.Replace(testFailed, "ExcelDna.Testing.Remote.PlainTestFailed, ExcelDna.Testing");
-                    var plain = Newtonsoft.Json.JsonConvert.DeserializeObject<PlainTestFailed>(SerializedMessage, deserializerSettings);
-                    return new TestFailed(plain.Test, plain.ExecutionTime, plain.Output, plain.ExceptionTypes, plain.Messages, plain.StackTraces, plain.ExceptionParentIndices);
-                }
-
-                return Newtonsoft.Json.JsonConvert.DeserializeObject<IMessageSinkMessage>(SerializedMessage, deserializerSettings);
-            }
-            catch
-            {
+                SerializedMessage = SerializedMessage.Replace(testFailed, "ExcelDna.Testing.Remote.PlainTestFailed, ExcelDna.Testing");
+                var plain = Newtonsoft.Json.JsonConvert.DeserializeObject<PlainTestFailed>(SerializedMessage, deserializerSettings);
+                return new TestFailed(plain.Test, plain.ExecutionTime, plain.Output, plain.ExceptionTypes, plain.Messages, plain.StackTraces, plain.ExceptionParentIndices);
             }
 
-            return null;
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<IMessageSinkMessage>(SerializedMessage, deserializerSettings);
         }
 
         public string SerializedMessage { get; set; }
