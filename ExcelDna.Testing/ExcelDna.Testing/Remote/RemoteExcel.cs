@@ -23,7 +23,7 @@ namespace ExcelDna.Testing.Remote
         public async Task<SerializableRunSummary> RunTestsAsync(string testAssemblyPath, string testAssemblyConfigurationFile, string[] testCases)
         {
             var testAssembly = new TestAssembly(new ReflectionAssemblyInfo(Assembly.LoadFrom(testAssemblyPath)), testAssemblyConfigurationFile);
-            MessageBusProxy messageBusProxy = new MessageBusProxy(i => BusMessage?.Invoke(null, new BusMessageEventArgs(i)));
+            MessageBusProxy messageBusProxy = new MessageBusProxy(SendBusMessage);
             RemoteTestAssemblyRunner runner = new RemoteTestAssemblyRunner(testAssembly, testCases.Select(i => ExcelTestCase.DeserializeFromString(i)), null, null, new TestFrameworkOptions(), messageBusProxy);
             return await runner.RunAsync();
         }
@@ -35,6 +35,15 @@ namespace ExcelDna.Testing.Remote
             PostMessage(ExcelDna.Integration.ExcelDnaUtil.WindowHandle, WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
         }
 #pragma warning restore CS1998
+
+        private bool SendBusMessage(Xunit.Abstractions.IMessageSinkMessage message)
+        {
+            if (BusMessage == null)
+                return false;
+
+            BusMessage?.Invoke(null, new BusMessageEventArgs(message));
+            return true;
+        }
 
         [return: MarshalAs(UnmanagedType.Bool)]
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]

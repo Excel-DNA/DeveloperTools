@@ -5,7 +5,7 @@ namespace ExcelDna.Testing.Remote
 {
     internal class MessageBusProxy : IMessageBus
     {
-        public delegate void BusMessageDelegate(IMessageSinkMessage message);
+        public delegate bool BusMessageDelegate(IMessageSinkMessage message);
 
         public MessageBusProxy(BusMessageDelegate proxy)
         {
@@ -18,15 +18,7 @@ namespace ExcelDna.Testing.Remote
 
         public bool QueueMessage(IMessageSinkMessage message)
         {
-            try
-            {
-                proxy(message);
-            }
-            catch
-            {
-            }
-
-            return true;
+            return proxy(message);
         }
 
         private BusMessageDelegate proxy;
