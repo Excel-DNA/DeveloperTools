@@ -11,14 +11,17 @@ namespace ExcelDna.Testing.Remote
     public interface IRemoteExcel
     {
         event EventHandler<BusMessageEventArgs> BusMessage;
+        event EventHandler FinalMessage;
 
         Task<SerializableRunSummary> RunTestsAsync(string testAssemblyPath, string testAssemblyConfigurationFile, string[] testCases);
+        Task SendFinalMessageAsync();
         Task CloseHostAsync();
     }
 
     public class RemoteExcel : IRemoteExcel
     {
         public event EventHandler<BusMessageEventArgs> BusMessage;
+        public event EventHandler FinalMessage;
 
         public async Task<SerializableRunSummary> RunTestsAsync(string testAssemblyPath, string testAssemblyConfigurationFile, string[] testCases)
         {
@@ -29,6 +32,11 @@ namespace ExcelDna.Testing.Remote
         }
 
 #pragma warning disable CS1998
+        public async Task SendFinalMessageAsync()
+        {
+            FinalMessage?.Invoke(null, null);
+        }
+
         public async Task CloseHostAsync()
         {
             const uint WM_CLOSE = 0x0010;

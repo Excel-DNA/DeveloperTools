@@ -99,8 +99,12 @@ namespace ExcelDna.Testing
                             bus.QueueMessage(msg);
                     };
 
+                    EventWaitHandle finalMessageEvent = new EventWaitHandle(false, EventResetMode.ManualReset);
+                    remoteObject.FinalMessage += (_, args) => finalMessageEvent.Set();
+
                     result = await remoteObject.RunTestsAsync(testAssembly.Assembly.AssemblyPath, testAssembly.ConfigFileName, testCases.Select(i => i.SerializeToString()).ToArray());
-                    await Task.Delay(200);
+                    await remoteObject.SendFinalMessageAsync();
+                    finalMessageEvent.WaitOne(30000);
                     await remoteObject.CloseHostAsync();
                 }
             }
