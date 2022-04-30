@@ -91,5 +91,4 @@ namespace ExcelDna.Testing.Remote
             return objectType == typeof(Xunit.Sdk.ReflectionTypeInfo) || objectType == typeof(Xunit.Abstractions.ITypeInfo);
         }
     }
-
 }

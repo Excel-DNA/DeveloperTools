@@ -199,6 +199,7 @@
     <Compile Include="Remote\MessageBusProxy.cs" />
     <Compile Include="Remote\BusMessageEventArgs.cs" />
     <Compile Include="Remote\PlainMethodInfo.cs" />
+    <Compile Include="Remote\PlainTestFailed.cs" />
     <Compile Include="Remote\TestFrameworkOptions.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="ExcelDetector.cs" />

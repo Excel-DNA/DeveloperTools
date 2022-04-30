@@ -39,6 +39,13 @@ namespace ExcelDna.Testing.Remote
 
             try
             {
+                if (SerializedMessage.Contains(testFailed))
+                {
+                    SerializedMessage = SerializedMessage.Replace(testFailed, "ExcelDna.Testing.Remote.PlainTestFailed, ExcelDna.Testing");
+                    var plain = Newtonsoft.Json.JsonConvert.DeserializeObject<PlainTestFailed>(SerializedMessage, deserializerSettings);
+                    return new TestFailed(plain.Test, plain.ExecutionTime, plain.Output, plain.ExceptionTypes, plain.Messages, plain.StackTraces, plain.ExceptionParentIndices);
+                }
+
                 return Newtonsoft.Json.JsonConvert.DeserializeObject<IMessageSinkMessage>(SerializedMessage, deserializerSettings);
             }
             catch
@@ -61,5 +68,7 @@ namespace ExcelDna.Testing.Remote
             TypeNameHandling = Newtonsoft.Json.TypeNameHandling.All,
             Converters = new Newtonsoft.Json.JsonConverter[] { new TestCaseConverter(), new ReflectionAssemblyInfoConverter(), new ReflectionTypeInfoConverter() }
         };
+
+        private static string testFailed = "Xunit.Sdk.TestFailed, xunit.execution.desktop";
     }
 }
