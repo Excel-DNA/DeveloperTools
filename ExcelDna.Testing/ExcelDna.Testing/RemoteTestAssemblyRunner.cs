@@ -10,7 +10,7 @@ using Xunit.Sdk;
 
 namespace ExcelDna.Testing
 {
-    public sealed class RemoteTestAssemblyRunner : LongLivedMarshalByRefObject, IDisposable
+    public sealed class RemoteTestAssemblyRunner : IDisposable
     {
         private readonly XunitTestAssemblyRunner runner;
 
@@ -24,9 +24,9 @@ namespace ExcelDna.Testing
             runner = new RealTestAssemblyRunner(testAssembly, testCases, diagnosticMessageSink, executionMessageSink, executionOptions, messageBus);
         }
 
-        public SerializableRunSummary Run()
+        public async Task<SerializableRunSummary> RunAsync()
         {
-            var result = runner.RunAsync().GetAwaiter().GetResult();
+            var result = await runner.RunAsync();
             return new SerializableRunSummary
             {
                 Total = result.Total,

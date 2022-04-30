@@ -1,5 +1,5 @@
-﻿using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit.Abstractions;
@@ -8,6 +8,7 @@ using Xunit.Sdk;
 
 namespace ExcelDna.Testing
 {
+    [Newtonsoft.Json.JsonConverter(typeof(Remote.ExcelTestCaseConverter))]
     public class ExcelTestCase : XunitTestCase
     {
         [Obsolete("Called by the de-serializer; should only be called by deriving classes for de-serialization purposes")]
@@ -15,11 +16,13 @@ namespace ExcelDna.Testing
         {
         }
 
+#pragma warning disable CS0618
         public ExcelTestCase(ExcelTestSettings testSettings, IMessageSink diagnosticMessageSink, TestMethodDisplay defaultMethodDisplay, ITestMethod testMethod, object[] testMethodArguments = null)
             : base(diagnosticMessageSink, defaultMethodDisplay, testMethod, testMethodArguments)
         {
             this.testSettings = testSettings;
         }
+#pragma warning restore CS0618
 
         public ExcelTestSettings Settings => testSettings;
 

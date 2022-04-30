@@ -87,6 +87,7 @@
     <Compile Include="InProcessTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="HelpExamples.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
