@@ -3,12 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Pipes;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Runtime.Remoting;
-using System.Runtime.Remoting.Channels;
-using System.Runtime.Remoting.Channels.Ipc;
-using System.Runtime.Serialization.Formatters;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -71,17 +68,6 @@ namespace ExcelDna.Testing
                 if (Debugger.IsAttached)
                     VS.VisualStudioInstance.AttachDebugger(excelProcess);
 
-                channel = RegisterIpcChannel("ExcelDna.Testing.ClientChannel", Guid.NewGuid().ToString(), false);
-                RemoteObject remoteObject = (RemoteObject)RemotingServices.Connect(typeof(RemoteObject), "ipc://xxx1000/RemoteObject.rem");
-
-                var diagnosticSink = new DynMessageSink(diagnosticMessageSink, message =>
-                {
-                    if (cancellationTokenSource.Token.IsCancellationRequested)
-                        return false;
-
-                    return diagnosticMessageSink.OnMessage(message);
-                });
-
                 var bus = new DynMessageBus(messageBus, message =>
                 {
                     if (cancellationTokenSource.Token.IsCancellationRequested)
@@ -98,11 +84,33 @@ namespace ExcelDna.Testing
                             break;
                     }
 
-                    return messageBus.QueueMessage(message);
+                    try
+                    {
+                        return messageBus.QueueMessage(message);
+                    }
+                    catch
+                    {
+                    }
+
+                    return false;
                 });
 
-                result = remoteObject.RunTests(testAssembly.Assembly.AssemblyPath, testAssembly.ConfigFileName, testCases.ToArray(), diagnosticSink, null, executionOptions, bus);
-                remoteObject.CloseHost();
+                using (var stream = new NamedPipeClientStream(".", "ExcelDna.Testing", PipeDirection.InOut, PipeOptions.Asynchronous))
+                {
+                    await stream.ConnectAsync();
+                    Remote.IRemoteExcel remoteObject = StreamJsonRpc.JsonRpc.Attach<Remote.IRemoteExcel>(stream);
+
+                    remoteObject.BusMessage += (_, args) =>
+                    {
+                        var msg = args.GetMessage();
+                        if (msg != null)
+                            bus.QueueMessage(msg);
+                    };
+
+                    result = await remoteObject.RunTestsAsync(testAssembly.Assembly.AssemblyPath, testAssembly.ConfigFileName, testCases.Select(i => i.SerializeToString()).ToArray());
+                    await Task.Delay(200);
+                    await remoteObject.CloseHostAsync();
+                }
             }
             catch (System.Exception e)
             {
@@ -147,40 +155,7 @@ namespace ExcelDna.Testing
                 ToList();
         }
 
-        IpcChannel channel;
-
-        public static IpcChannel RegisterIpcChannel(string name, string portName, bool ensureSecurity)
-        {
-            var ipcChannel = new IpcChannel(
-                properties: new Hashtable
-                {
-                    ["name"] = name,
-                    ["portName"] = portName,
-                },
-                clientSinkProvider: new BinaryClientFormatterSinkProvider { },
-                serverSinkProvider: new BinaryServerFormatterSinkProvider { TypeFilterLevel = TypeFilterLevel.Full });
-
-            ChannelServices.RegisterChannel(ipcChannel, ensureSecurity);
-            return ipcChannel;
-        }
-
-        private class DynMessageSink : LongLivedMarshalByRefObject, IMessageSink
-        {
-            private readonly IMessageSink messageSink;
-
-            public DynMessageSink(IMessageSink messageSink, Func<IMessageSinkMessage, bool> onMessage)
-            {
-                this.messageSink = messageSink;
-                OnMessageCallback = onMessage;
-            }
-
-            public Func<IMessageSinkMessage, bool> OnMessageCallback { get; }
-
-            public bool OnMessage(IMessageSinkMessage message)
-                => OnMessageCallback(message);
-        }
-
-        private class DynMessageBus : LongLivedMarshalByRefObject, IMessageBus
+        private class DynMessageBus : IMessageBus
         {
             private readonly IMessageBus messageBus;
 

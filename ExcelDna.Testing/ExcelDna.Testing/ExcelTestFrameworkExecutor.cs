@@ -12,10 +12,19 @@ namespace ExcelDna.Testing
         {
         }
 
+#pragma warning disable VSTHRD100
         protected override async void RunTestCases(IEnumerable<IXunitTestCase> testCases, IMessageSink executionMessageSink, ITestFrameworkExecutionOptions executionOptions)
         {
-            using (var assemblyRunner = new ExcelTestAssemblyRunner(TestAssembly, testCases, DiagnosticMessageSink, executionMessageSink, executionOptions))
-                await assemblyRunner.RunAsync();
+            try
+            {
+                using (var assemblyRunner = new ExcelTestAssemblyRunner(TestAssembly, testCases, DiagnosticMessageSink, executionMessageSink, executionOptions))
+                    await assemblyRunner.RunAsync();
+            }
+            catch
+            {
+            }
         }
+#pragma warning restore VSTHRD100
+
     }
 }
