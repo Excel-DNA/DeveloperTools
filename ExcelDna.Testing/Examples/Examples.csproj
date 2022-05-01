@@ -62,11 +62,8 @@
 	  </None>
 	</ItemGroup>
 
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(TargetFramework)' == 'net472' ">
-	  <Exec Command="copy /y &quot;$(SolutionDir)ExcelAgent\bin\$(ConfigurationName)\net472\ExcelAgent-AddIn64-packed.xll&quot; &quot;$(TargetDir)ExcelAgent64.xll&quot;&#xD;&#xA;copy /y &quot;$(SolutionDir)ExcelAgent\bin\$(ConfigurationName)\net472\ExcelAgent-AddIn-packed.xll&quot; &quot;$(TargetDir)ExcelAgent.xll&quot;" />
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" >
+	  <Exec Command="if $(TargetFramework)==net472 copy /y &quot;$(SolutionDir)ExcelAgent\bin\$(ConfigurationName)\net472\ExcelAgent-AddIn64-packed.xll&quot; &quot;$(TargetDir)ExcelAgent64.xll&quot;&#xD;&#xA;if $(TargetFramework)==net472 copy /y &quot;$(SolutionDir)ExcelAgent\bin\$(ConfigurationName)\net472\ExcelAgent-AddIn-packed.xll&quot; &quot;$(TargetDir)ExcelAgent.xll&quot;&#xD;&#xA;if $(TargetFramework)==net6.0-windows copy /y &quot;$(SolutionDir)ExcelAgent\bin\$(ConfigurationName)\net6.0-windows\ExcelAgent-AddIn64-packed.xll&quot; &quot;$(TargetDir)ExcelAgent64.xll&quot;&#xD;&#xA;if $(TargetFramework)==net6.0-windows copy /y &quot;$(SolutionDir)ExcelAgent\bin\$(ConfigurationName)\net6.0-windows\ExcelAgent-AddIn-packed.xll&quot; &quot;$(TargetDir)ExcelAgent.xll&quot;" />
 	</Target>
 
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(TargetFramework)' == 'net6.0-windows' ">
-		<Exec Command="copy /y &quot;$(SolutionDir)ExcelAgent\bin\$(ConfigurationName)\net6.0-windows\ExcelAgent-AddIn64-packed.xll&quot; &quot;$(TargetDir)ExcelAgent64.xll&quot;&#xD;&#xA;copy /y &quot;$(SolutionDir)ExcelAgent\bin\$(ConfigurationName)\net6.0-windows\ExcelAgent-AddIn-packed.xll&quot; &quot;$(TargetDir)ExcelAgent.xll&quot;" />
-	</Target>
 </Project>
