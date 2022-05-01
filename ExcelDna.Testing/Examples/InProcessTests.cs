@@ -1,6 +1,5 @@
 ﻿using ExcelDna.Integration;
 using Microsoft.Office.Interop.Excel;
-using System;
 using Xunit;
 
 namespace Examples
@@ -18,7 +17,7 @@ namespace Examples
         {
             Range targetRange = (ExcelDna.Testing.Util.Workbook.Sheets[1] as Worksheet).Range["A1:C2"];
 
-            object[,] newValues = new object[,] { { "One", 2, "Three" }, { true, DateTime.Now, "" } };
+            object[,] newValues = new object[,] { { "One", 2, "Three" }, { true, System.DateTime.Now, "" } };
             targetRange.Value = newValues;
 
             var cell = new ExcelReference(0, 0);
