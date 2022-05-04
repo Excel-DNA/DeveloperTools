@@ -12,6 +12,12 @@ namespace Examples
             Assert.Equal("16.0", ExcelDna.Testing.Util.Application.Version);
         }
 
+        [ExcelFact]
+        public void TestAssemblyDirectory()
+        {
+            Assert.False(string.IsNullOrEmpty(ExcelDna.Testing.Util.TestAssemblyDirectory));
+        }
+
         [ExcelFact(Workbook = "", AddIn = @"..\..\..\..\ExampleAddin\bin\Debug\ExampleAddin-AddIn")]
         public void FunctionSayHello()
         {

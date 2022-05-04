@@ -124,7 +124,7 @@ namespace ExcelDna.Testing
                 Bitness bitness = Marshal.SizeOf(Util.Application.HinstancePtr) == 8 ? Bitness.Bit64 : Bitness.Bit32;
                 foreach (string addin in GetAddins(testCases))
                     Util.Application.RegisterXLL(ExcelRunner.GetXllPath(testAssembly.Assembly.AssemblyPath, addin, bitness));
-                Util.TestAssemblyDirectory = Path.GetDirectoryName(testAssembly.Assembly.AssemblyPath);
+                Util.TestAssemblyDirectory = RunnerUtil.TestAssemblyDirectory(testAssembly, testCases);
             }
             catch (System.Exception e)
             {
