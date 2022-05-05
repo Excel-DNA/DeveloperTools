@@ -15,7 +15,7 @@ namespace ExcelDna.Testing.VS
             var localProcess = debuggerHostDte?.Debugger.LocalProcesses.OfType<EnvDTE80.Process2>().FirstOrDefault(p => p.ProcessID == hostProcess.Id);
             if (localProcess != null)
             {
-                localProcess.Attach2("Managed");
+                localProcess.Attach2(debuggingEngine);
             }
         }
 
@@ -33,5 +33,12 @@ namespace ExcelDna.Testing.VS
 
             return null;
         }
+
+        private static string debuggingEngine =
+#if NETFRAMEWORK
+            "Managed (.NET 4.x)";
+#else
+            "Managed (.NET Core, .NET 5+)";
+#endif
     }
 }
