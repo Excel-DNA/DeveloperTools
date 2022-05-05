@@ -18,26 +18,27 @@ namespace ExcelDna.Testing
             if (!excelDetected)
                 throw new ApplicationException("Can't find an installed version of Excel.");
 
+            string addinAssemblyDirectory = Path.GetDirectoryName(addinAssemblyPath);
             string arguments = "";
             foreach (string externalAddinRelativePath in addins)
             {
-                arguments += Quote(GetXllPath(addinAssemblyPath, externalAddinRelativePath, bitness)) + " ";
+                arguments += Quote(GetXllPath(addinAssemblyDirectory, externalAddinRelativePath, bitness)) + " ";
             }
 
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = excelExePath;
-            info.Arguments = arguments + Quote(GetExcelAgentXllPath(addinAssemblyPath, bitness));
+            info.Arguments = arguments + Quote(GetExcelAgentXllPath(addinAssemblyDirectory, bitness));
             return Process.Start(info);
         }
 
-        public static string GetXllPath(string addinAssemblyPath, string externalXllRelativePath, Bitness bitness)
+        public static string GetXllPath(string addinAssemblyDirectory, string externalXllRelativePath, Bitness bitness)
         {
-            return Path.Combine(Path.GetDirectoryName(addinAssemblyPath), externalXllRelativePath + (bitness == Bitness.Bit64 ? "64" : "") + ".xll");
+            return Path.Combine(addinAssemblyDirectory, externalXllRelativePath + (bitness == Bitness.Bit64 ? "64" : "") + ".xll");
         }
 
-        private static string GetExcelAgentXllPath(string addinAssemblyPath, Bitness bitness)
+        private static string GetExcelAgentXllPath(string addinAssemblyDirectory, Bitness bitness)
         {
-            return GetXllPath(addinAssemblyPath, "ExcelAgent", bitness);
+            return GetXllPath(addinAssemblyDirectory, "ExcelAgent", bitness);
         }
 
         private string Quote(string s)
