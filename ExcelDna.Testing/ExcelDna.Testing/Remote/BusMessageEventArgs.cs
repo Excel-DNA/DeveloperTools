@@ -55,6 +55,6 @@ namespace ExcelDna.Testing.Remote
             Converters = new Newtonsoft.Json.JsonConverter[] { new TestCaseConverter(), new ReflectionAssemblyInfoConverter(), new ReflectionTypeInfoConverter() }
         };
 
-        private static string testFailed = "Xunit.Sdk.TestFailed, xunit.execution.desktop";
+        private static string testFailed = "Xunit.Sdk.TestFailed, " + typeof(Xunit.Sdk.TestFailed).Assembly.GetName().Name;
     }
 }
