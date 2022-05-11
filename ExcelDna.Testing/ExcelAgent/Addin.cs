@@ -1,11 +1,5 @@
 ﻿using ExcelDna.Integration;
-using System.Collections;
-using System.Runtime.Remoting;
-using System.Runtime.Remoting.Channels;
-using System.Runtime.Remoting.Channels.Ipc;
-using System.Runtime.Serialization.Formatters;
-//using ExcelDna.Registration;
-using System.Windows;
+using System.IO.Pipes;
 
 namespace ExcelAgent
 {
@@ -13,47 +7,35 @@ namespace ExcelAgent
     {
         public void AutoOpen()
         {
-            channel = RegisterIpcChannel("ExcelAgent", "xxx1000", false);
-            RemotingConfiguration.RegisterWellKnownServiceType(typeof(ExcelDna.Testing.RemoteObject), "RemoteObject.rem", WellKnownObjectMode.Singleton);
+            new System.Threading.Thread(StartRPC).Start();
+
             try
             {
                 ExcelDna.Testing.ExcelStartupEvent.Set();
             }
             catch (System.Threading.WaitHandleCannotBeOpenedException)
             {
-                UnregisterChannel();
             }
         }
 
         public void AutoClose()
         {
-            UnregisterChannel();
         }
 
-        public static IpcChannel RegisterIpcChannel(string name, string portName, bool ensureSecurity)
+#pragma warning disable VSTHRD100
+        private async void StartRPC()
         {
-            var ipcChannel = new IpcChannel(
-                properties: new Hashtable
-                {
-                    ["name"] = name,
-                    ["portName"] = portName,
-                },
-                clientSinkProvider: new BinaryClientFormatterSinkProvider { },
-                serverSinkProvider: new BinaryServerFormatterSinkProvider { TypeFilterLevel = TypeFilterLevel.Full });
-
-            ChannelServices.RegisterChannel(ipcChannel, ensureSecurity);
-            return ipcChannel;
-        }
-
-        private void UnregisterChannel()
-        {
-            if (channel != null)
+            try
             {
-                ChannelServices.UnregisterChannel(channel);
-                channel = null;
+                var stream = new NamedPipeServerStream("ExcelDna.Testing", PipeDirection.InOut, NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Byte, PipeOptions.Asynchronous);
+                await stream.WaitForConnectionAsync();
+                var jsonRpc = StreamJsonRpc.JsonRpc.Attach(stream, new ExcelDna.Testing.Remote.RemoteExcel());
+                await jsonRpc.Completion;
+            }
+            catch
+            {
             }
         }
-
-        private IpcChannel channel;
+#pragma warning restore VSTHRD100
     }
 }

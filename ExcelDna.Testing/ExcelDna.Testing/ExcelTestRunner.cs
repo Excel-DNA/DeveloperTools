@@ -30,6 +30,7 @@ namespace ExcelDna.Testing
             return result;
         }
 
+#pragma warning disable VSTHRD101
         private Task<decimal> InvokeOnUIThreadAsync(ExceptionAggregator aggregator)
         {
             var tcs = new TaskCompletionSource<decimal>();
@@ -50,6 +51,7 @@ namespace ExcelDna.Testing
 
             return tcs.Task;
         }
+#pragma warning restore VSTHRD101
 
         private Task<decimal> InvokeAsync(ExceptionAggregator aggregator)
         {

@@ -10,13 +10,13 @@ using Xunit.Sdk;
 
 namespace ExcelDna.Testing
 {
-    public sealed class RemoteTestAssemblyRunner : LongLivedMarshalByRefObject, IDisposable
+    public sealed class RemoteTestAssemblyRunner : IDisposable
     {
         private readonly XunitTestAssemblyRunner runner;
 
         public RemoteTestAssemblyRunner(ITestAssembly testAssembly, IEnumerable<ExcelTestCase> testCases, IMessageSink diagnosticMessageSink, IMessageSink executionMessageSink, ITestFrameworkExecutionOptions executionOptions, IMessageBus messageBus)
         {
-            Util.TestAssemblyDirectory = System.IO.Path.GetDirectoryName(testAssembly.Assembly.AssemblyPath);
+            Util.TestAssemblyDirectory = RunnerUtil.TestAssemblyDirectory(testAssembly, testCases);
             ExcelDna.Integration.ExcelAsyncUtil.QueueAsMacro(delegate
             {
                 ExcelDna.Testing.Util.Application = (Microsoft.Office.Interop.Excel.Application)ExcelDnaUtil.Application;
@@ -24,9 +24,9 @@ namespace ExcelDna.Testing
             runner = new RealTestAssemblyRunner(testAssembly, testCases, diagnosticMessageSink, executionMessageSink, executionOptions, messageBus);
         }
 
-        public SerializableRunSummary Run()
+        public async Task<SerializableRunSummary> RunAsync()
         {
-            var result = runner.RunAsync().GetAwaiter().GetResult();
+            var result = await runner.RunAsync();
             return new SerializableRunSummary
             {
                 Total = result.Total,
