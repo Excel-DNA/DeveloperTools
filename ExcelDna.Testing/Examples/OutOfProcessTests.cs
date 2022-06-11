@@ -18,7 +18,7 @@ namespace Examples
             Assert.False(string.IsNullOrEmpty(ExcelDna.Testing.Util.TestAssemblyDirectory));
         }
 
-        [ExcelFact(Workbook = "", AddIn = @"..\..\..\..\ExampleAddin\bin\Debug\ExampleAddin-AddIn")]
+        [ExcelFact(Workbook = "", AddIn = @"..\..\..\..\ExampleAddin\bin\Debug\net472\ExampleAddin-AddIn")]
         public void FunctionSayHello()
         {
             Range functionRange = (ExcelDna.Testing.Util.Workbook.Sheets[1] as Worksheet).Range["B1:B1"];

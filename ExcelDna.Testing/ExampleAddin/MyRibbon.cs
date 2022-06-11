@@ -22,7 +22,7 @@ namespace ExampleAddin
         public void OnButtonPressed(IRibbonControl control)
         {
             Application app = (Application)ExcelDnaUtil.Application;
-            Range targetRange = app.ActiveSheet.Range["A1:C2"];
+            Range targetRange = (app.ActiveSheet as Worksheet).Range["A1:C2"];
 
             object[,] newValues = new object[,] { { "One", 2, "Three" }, { true, System.DateTime.Now, "" } };
             targetRange.Value = newValues;
