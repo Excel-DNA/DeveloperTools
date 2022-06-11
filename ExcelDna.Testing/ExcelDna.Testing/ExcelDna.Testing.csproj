@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
-		<PackageReference Include="ExcelDna.Interop" Version="14.0.1" />
+		<PackageReference Include="ExcelDna.Interop" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0-windows' ">
@@ -32,7 +32,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ExcelDna.Integration" Version="1.6.0-preview3" />
+		<PackageReference Include="ExcelDna.Integration" />
 		<PackageReference Include="Microsoft.VisualStudio.OLE.Interop" Version="17.1.32210.191" />
 		<PackageReference Include="envdte" Version="17.1.32210.191" />
         <PackageReference Include="StreamJsonRpc" Version="2.10.44" />
