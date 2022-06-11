@@ -2,10 +2,6 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
-
-		<Version>1.6.0.0</Version>
-		<FileVersion>1.6.0.0</FileVersion>
-		<InformationalVersion>1.6.0.0</InformationalVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

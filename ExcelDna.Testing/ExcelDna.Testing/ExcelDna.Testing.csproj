@@ -4,10 +4,6 @@
 		<TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
-
-		<Version>1.6.0.0</Version>
-		<FileVersion>1.6.0.0</FileVersion>
-		<InformationalVersion>1.6.0.0</InformationalVersion>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
