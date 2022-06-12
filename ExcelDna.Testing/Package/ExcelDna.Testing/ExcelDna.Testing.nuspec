@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>ExcelDna.Testing</id>
-        <version>1.6.0-preview3</version>
+        <version>$ExcelDnaVersion$</version>
         <title>Excel-DNA Add-in Integration Testing</title>
         <authors>Excel-DNA Developers</authors>
         <owners>Govert van Drimmelen</owners>
@@ -23,7 +23,7 @@
         <tags>excel exceldna excel-dna xunit</tags>
       <dependencies>
         <group targetFramework=".NETFramework4.7.2" >
-          <dependency id="ExcelDna.Integration" version="[1.6.0-preview3]" />
+          <dependency id="ExcelDna.Integration" version="[$ExcelDnaVersion$]" />
           <dependency id="ExcelDna.Interop" version="[14.0.1]" />
           <dependency id="Microsoft.VisualStudio.OLE.Interop" version="17.1.32210.191" />
           <dependency id="xunit.runner.visualstudio" version="2.4.3" />
@@ -34,7 +34,7 @@
           <dependency id="StreamJsonRpc" version="2.10.44" />
         </group>
         <group targetFramework="net6.0-windows" >
-          <dependency id="ExcelDna.Integration" version="[1.6.0-preview3]" />
+          <dependency id="ExcelDna.Integration" version="[$ExcelDnaVersion$]" />
           <dependency id="Microsoft.VisualStudio.OLE.Interop" version="17.1.32210.191" />
           <dependency id="Microsoft.VisualStudio.Interop" version="17.1.32210.191" />
           <dependency id="xunit.runner.visualstudio" version="2.4.3" />

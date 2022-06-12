@@ -43,7 +43,7 @@ namespace Examples
             Assert.Equal("Red Ford Truck", cell.Value.ToString());
         }
 
-        [ExcelFact(Workbook = "", AddIn = @"..\..\..\..\ExampleAddin\bin\Debug\ExampleAddin-AddIn")]
+        [ExcelFact(Workbook = "", AddIn = @"..\..\..\..\ExampleAddin\bin\Debug\net472\ExampleAddin-AddIn")]
         public void ClickRibbonButton()
         {
             ExcelDna.Testing.Automation.ClickRibbonButton("ExampleAddin", "My Button");
@@ -52,7 +52,7 @@ namespace Examples
             Assert.Equal("One", cell.GetValue().ToString());
         }
 
-        [ExcelFact(Workbook = "", AddIn = @"..\..\..\..\ExampleAddin\bin\Debug\ExampleAddin-AddIn")]
+        [ExcelFact(Workbook = "", AddIn = @"..\..\..\..\ExampleAddin\bin\Debug\net472\ExampleAddin-AddIn")]
         public void AsyncFunctionTest()
         {
             Range targetRange = (ExcelDna.Testing.Util.Workbook.Sheets[1] as Worksheet).Range["A1"];

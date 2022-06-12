@@ -2,14 +2,10 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
-
-		<Version>1.6.0.0</Version>
-		<FileVersion>1.6.0.0</FileVersion>
-		<InformationalVersion>1.6.0.0</InformationalVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ExcelDna.AddIn" Version="1.6.0-preview3" />
+		<PackageReference Include="ExcelDna.AddIn" />
         <PackageReference Include="StreamJsonRpc" Version="2.10.44" />
 	</ItemGroup>
 
