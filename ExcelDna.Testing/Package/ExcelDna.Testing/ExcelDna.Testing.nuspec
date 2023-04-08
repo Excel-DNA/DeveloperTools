@@ -24,7 +24,7 @@
       <dependencies>
         <group targetFramework=".NETFramework4.7.2" >
           <dependency id="ExcelDna.Integration" version="[$ExcelDnaVersion$]" />
-          <dependency id="ExcelDna.Interop" version="[14.0.1]" />
+          <dependency id="ExcelDna.Interop" version="[15.0.1]" />
           <dependency id="Microsoft.VisualStudio.OLE.Interop" version="17.1.32210.191" />
           <dependency id="xunit.runner.visualstudio" version="2.4.3" />
           <dependency id="xunit.abstractions" version="2.0.3" />
@@ -35,6 +35,7 @@
         </group>
         <group targetFramework="net6.0-windows7.0" >
           <dependency id="ExcelDna.Integration" version="[$ExcelDnaVersion$]" />
+          <dependency id="ExcelDna.Interop" version="[15.0.1]" />
           <dependency id="Microsoft.VisualStudio.OLE.Interop" version="17.1.32210.191" />
           <dependency id="Microsoft.VisualStudio.Interop" version="17.1.32210.191" />
           <dependency id="xunit.runner.visualstudio" version="2.4.3" />
