@@ -51,10 +51,10 @@
         <file src="..\..\ExcelDna.Testing\bin\Release\net472\ExcelDna.Testing.dll" target="lib\net472\" />
         <file src="..\..\ExcelDna.Testing\bin\Release\net6.0-windows\ExcelDna.Testing.dll" target="lib\net6.0-windows7.0\" />
 
-        <file src="..\..\ExcelAgent\bin\Release\net472\ExcelAgent-AddIn64-packed.xll" target="Build\net472\ExcelAgent64.xll" />
-        <file src="..\..\ExcelAgent\bin\Release\net472\ExcelAgent-AddIn-packed.xll" target="Build\net472\ExcelAgent.xll" />
-        <file src="..\..\ExcelAgent\bin\Release\net6.0-windows\ExcelAgent-AddIn64-packed.xll" target="Build\net6.0-windows7.0\ExcelAgent64.xll" />
-        <file src="..\..\ExcelAgent\bin\Release\net6.0-windows\ExcelAgent-AddIn-packed.xll" target="Build\net6.0-windows7.0\ExcelAgent.xll" />
+        <file src="..\..\ExcelAgent\bin\Release\net472\publish\ExcelAgent-AddIn64-packed.xll" target="Build\net472\ExcelAgent64.xll" />
+        <file src="..\..\ExcelAgent\bin\Release\net472\publish\ExcelAgent-AddIn-packed.xll" target="Build\net472\ExcelAgent.xll" />
+        <file src="..\..\ExcelAgent\bin\Release\net6.0-windows\publish\ExcelAgent-AddIn64-packed.xll" target="Build\net6.0-windows7.0\ExcelAgent64.xll" />
+        <file src="..\..\ExcelAgent\bin\Release\net6.0-windows\publish\ExcelAgent-AddIn-packed.xll" target="Build\net6.0-windows7.0\ExcelAgent.xll" />
 
         <file src="build\ExcelDna.Testing.targets" target="Build\" />
         <file src="build\ExcelDna.Testing.props" target="Build\" />
