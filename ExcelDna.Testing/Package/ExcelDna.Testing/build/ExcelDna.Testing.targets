@@ -2,7 +2,7 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Target Name="AfterBuild">
 	<PropertyGroup Condition="'$(TargetFrameworkVersion.Length())' >= '2' AND '$(TargetFrameworkVersion.Substring(1,1))' >= '6'">
-		<ExcelDnaTestingAgentPath>$(MSBuildThisFileDirectory)net6.0-windows\</ExcelDnaTestingAgentPath>
+		<ExcelDnaTestingAgentPath>$(MSBuildThisFileDirectory)net6.0-windows7.0\</ExcelDnaTestingAgentPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(TargetFrameworkVersion.Length())' >= '2' AND '$(TargetFrameworkVersion.Substring(0,2))' == 'v4'">
 		<ExcelDnaTestingAgentPath>$(MSBuildThisFileDirectory)net472\</ExcelDnaTestingAgentPath>
