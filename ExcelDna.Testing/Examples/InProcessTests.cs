@@ -72,5 +72,15 @@ namespace Examples
             Range cell = (ExcelDna.Testing.Util.Workbook.Sheets[1] as Worksheet).Range["A1:A1"];
             Assert.Equal("Hello .NET6 world", cell.Value.ToString());
         }
+
+        [ExcelFact(Workbook = "", AddIn = @"..\..\..\..\ExampleAddinNET8\bin\Debug\net8.0-windows\ExampleAddinNET8-AddIn")]
+        public void FunctionTestNET8()
+        {
+            Range targetRange = (ExcelDna.Testing.Util.Workbook.Sheets[1] as Worksheet).Range["A1"];
+            targetRange.Formula = "=SayHelloNET8(\"world\")";
+
+            Range cell = (ExcelDna.Testing.Util.Workbook.Sheets[1] as Worksheet).Range["A1:A1"];
+            Assert.Equal("Hello .NET8 world", cell.Value.ToString());
+        }
     }
 }
