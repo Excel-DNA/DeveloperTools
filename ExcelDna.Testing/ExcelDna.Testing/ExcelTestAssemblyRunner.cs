@@ -43,6 +43,9 @@ namespace ExcelDna.Testing
                 result.Aggregate(await COMRunTestCasesAsync(excelOutOfProcessTestCases, messageBus, cancellationTokenSource));
             if (excelInProcessTestCases.Count() > 0)
                 result.Aggregate(await RemoteRunTestCasesAsync(excelInProcessTestCases, messageBus, cancellationTokenSource));
+
+            CleanupReferences();
+
             return result;
         }
 
@@ -169,6 +172,12 @@ namespace ExcelDna.Testing
 
             public bool QueueMessage(IMessageSinkMessage message)
                 => OnMessageCallback(message);
+        }
+
+        private static void CleanupReferences()
+        {
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
     }
 }
