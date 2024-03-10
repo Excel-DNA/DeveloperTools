@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32408.312
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDna.Testing", "ExcelDna.Testing\ExcelDna.Testing.csproj", "{7E1F6558-D102-4CCF-A770-C2C82416B70A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelDna.Testing", "ExcelDna.Testing\ExcelDna.Testing.csproj", "{7E1F6558-D102-4CCF-A770-C2C82416B70A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "Examples\Examples.csproj", "{CC2854E3-11FA-4355-AA5C-37E7CDF80068}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples", "Examples\Examples.csproj", "{CC2854E3-11FA-4355-AA5C-37E7CDF80068}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAgent", "ExcelAgent\ExcelAgent.csproj", "{5262A385-DD7E-4C43-92CA-ECBD8804AF8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelAgent", "ExcelAgent\ExcelAgent.csproj", "{5262A385-DD7E-4C43-92CA-ECBD8804AF8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleAddin", "ExampleAddin\ExampleAddin.csproj", "{2054617E-5831-428B-BECA-997E1797B9F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleAddin", "ExampleAddin\ExampleAddin.csproj", "{2054617E-5831-428B-BECA-997E1797B9F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleAddinNET6", "ExampleAddinNET6\ExampleAddinNET6.csproj", "{5440D7B6-D030-4A47-960D-E056710E50F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleAddinNET6", "ExampleAddinNET6\ExampleAddinNET6.csproj", "{5440D7B6-D030-4A47-960D-E056710E50F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleAddinNET8", "ExampleAddinNET8\ExampleAddinNET8.csproj", "{B005314F-9398-4452-B98C-577762654416}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{5440D7B6-D030-4A47-960D-E056710E50F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5440D7B6-D030-4A47-960D-E056710E50F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5440D7B6-D030-4A47-960D-E056710E50F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B005314F-9398-4452-B98C-577762654416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B005314F-9398-4452-B98C-577762654416}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B005314F-9398-4452-B98C-577762654416}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B005314F-9398-4452-B98C-577762654416}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
