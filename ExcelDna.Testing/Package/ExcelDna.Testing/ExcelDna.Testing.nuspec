@@ -8,6 +8,7 @@
         <owners>Govert van Drimmelen</owners>
         <projectUrl>http://excel-dna.net</projectUrl>
 		<icon>images\ExcelDna-nu.png</icon>
+        <license type="file">License.txt</license>
         <readme>README.md</readme>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>
@@ -62,6 +63,7 @@
         <file src="build\ExcelDna.Testing.props" target="Build\" />
 		
 		<file src="..\..\..\..\ExcelDna\Package\images\ExcelDna-nu.png" target="images\" />
+        <file src="..\..\..\License.txt" target="License.txt" />
         <file src="README.md" target="README.md" />
     </files>
 </package>
