@@ -1,7 +1,8 @@
 <Project>
   <ItemGroup>
-	<PackageReference Update="ExcelDna.Integration" Version="1.8.0-alpha2" />
-	<PackageReference Update="ExcelDna.AddIn" Version="1.8.0-alpha2" />
-	<PackageReference Update="ExcelDna.Interop" Version="15.0.1" />
+	<PackageReference Update="ExcelDna.Integration" Version="1.10.0-preview5" />
+	<PackageReference Update="ExcelDna.AddIn" Version="1.10.0-preview5" />
+	<PackageReference Update="ExcelDna.AddIn.NativeAOT" Version="1.10.0-preview5" />
+	<PackageReference Update="ExcelDna.Interop" Version="16.0.0" />
   </ItemGroup>
 </Project>

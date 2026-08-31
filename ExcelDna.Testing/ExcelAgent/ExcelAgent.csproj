@@ -1,11 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net472;net6.0-windows;net10.0-windows</TargetFrameworks>
 	</PropertyGroup>
 
-	<ItemGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net10.0-windows'">
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<PublishAOT>true</PublishAOT>
+		<SelfContained>true</SelfContained>
+	</PropertyGroup>
+
+	<Target Name="SetNoBuild" Condition="'$(TargetFramework)' == 'net10.0-windows'">
+	<PropertyGroup>
+		<NoBuild>true</NoBuild>
+	</PropertyGroup>
+	</Target>
+	<Target Name="PublishAfterBuild" AfterTargets="AfterBuild" DependsOnTargets="SetNoBuild;Publish" Condition="'$(_IsPublishing)' != 'true' AND '$(TargetFramework)' == 'net10.0-windows'"/>
+
+	<ItemGroup Condition="'$(TargetFramework)' != 'net10.0-windows'">
 		<PackageReference Include="ExcelDna.AddIn" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0-windows'">
+		<PackageReference Include="ExcelDna.AddIn.NativeAOT" />
+	</ItemGroup>
+
+	<ItemGroup>
         <PackageReference Include="StreamJsonRpc" Version="2.10.44" />
 	</ItemGroup>
 
