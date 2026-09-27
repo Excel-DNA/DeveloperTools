@@ -11,7 +11,7 @@
 		<PackageReference Include="ExcelDna.Integration" />
 		<PackageReference Include="Microsoft.VisualStudio.OLE.Interop" Version="17.1.32210.191" />
 		<PackageReference Include="envdte" Version="17.1.32210.191" />
-        <PackageReference Include="StreamJsonRpc" Version="2.10.44" />
+        <PackageReference Include="StreamJsonRpc" Version="2.25.29" />
         <PackageReference Include="xunit.extensibility.execution" Version="2.4.1" />
 	</ItemGroup>
 

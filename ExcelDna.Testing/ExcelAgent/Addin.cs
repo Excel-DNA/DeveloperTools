@@ -23,6 +23,10 @@ namespace ExcelAgent
         }
 
 #pragma warning disable VSTHRD100
+#if NET10_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.DynamicDependency(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicMethods, typeof(ExcelDna.Testing.Remote.RemoteExcel))]
+        [System.Diagnostics.CodeAnalysis.DynamicDependency(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.All, typeof(ExcelDna.Testing.Remote.RemoteExcel))]
+#endif
         private async void StartRPC()
         {
             try
