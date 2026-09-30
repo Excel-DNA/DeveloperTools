@@ -25,7 +25,7 @@ namespace ExcelDna.Testing.Remote
 
         public async Task<SerializableRunSummary> RunTestsAsync(string testAssemblyPath, string testAssemblyConfigurationFile, string[] testCases)
         {
-            var testAssembly = new TestAssembly(new ReflectionAssemblyInfo(Assembly.LoadFrom(testAssemblyPath)), testAssemblyConfigurationFile);
+            var testAssembly = new TestAssembly(new AssemblyInfo(testAssemblyPath), testAssemblyConfigurationFile, new Version(0, 0, 0, 0));
             MessageBusProxy messageBusProxy = new MessageBusProxy(SendBusMessage);
             RemoteTestAssemblyRunner runner = new RemoteTestAssemblyRunner(testAssembly, testCases.Select(i => ExcelTestCase.DeserializeFromString(i)), null, null, new TestFrameworkOptions(), messageBusProxy);
             return await runner.RunAsync();
